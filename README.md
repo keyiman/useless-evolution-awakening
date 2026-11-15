@@ -1,5 +1,7 @@
 # 废物进化论 · 物的觉醒
 
+> 源码仓库：https://github.com/keyiman/useless-evolution-awakening
+
 四件物品，慢慢成为自己。以真实 Aholo Lux3D 生成模型为主体，补充形态变化和动作动画的3D进化展。
 
 ## 四条进化路线
