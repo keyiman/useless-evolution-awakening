@@ -1,0 +1,62 @@
+{
+  "a5f0b5a6e391520efc29": {
+    "key": "a5f0b5a6e391520efc29",
+    "file": "a5f0b5a6e391520efc29.glb",
+    "prompt": "Object: one drinking cup, still recognizable as a drinking cup.\nInherited: cylindrical cup body, open circular rim, curved side handle, white ceramic material.\nMutation: none, this is the unmodified original object.\nGeometry: all added parts are physically connected with visible joints, separate readable components, one single object, full object visible, centered on a plain light grey studio background, soft studio lighting, no text, no logo, no people, no floating parts.\nStyle: coherent premium industrial 3D product design, white ceramic and glazed ceramic, game-ready asset.",
+    "nodeId": "n_a58e5d16bb",
+    "nodeLabel": "水杯 G0",
+    "family": "cup",
+    "generation": 0,
+    "taskId": 4778822,
+    "bytes": 811388,
+    "createdAt": "2026-11-06T12:00:33.635Z",
+    "modelVersion": "G1-Turbo",
+    "originalBytes": 10003580,
+    "optimized": true
+  },
+  "f62d89fc7cf02806a99c": {
+    "key": "f62d89fc7cf02806a99c",
+    "file": "f62d89fc7cf02806a99c.glb",
+    "prompt": "Object: one chair, still recognizable as a chair.\nInherited: flat seat, straight backrest, four legs, light oak wood.\nMutation: none, this is the unmodified original object.\nGeometry: all added parts are physically connected with visible joints, separate readable components, one single object, full object visible, centered on a plain light grey studio background, soft studio lighting, no text, no logo, no people, no floating parts.\nStyle: coherent premium industrial 3D product design, light oak wood and linen cushion, game-ready asset.",
+    "nodeId": "n_844e12e959",
+    "nodeLabel": "椅子 G0",
+    "family": "chair",
+    "generation": 0,
+    "taskId": 4779829,
+    "bytes": 965924,
+    "createdAt": "2026-11-06T12:11:25.226Z",
+    "modelVersion": "G1-Turbo",
+    "originalBytes": 10715632,
+    "optimized": true
+  },
+  "b3c3a2e160d84c2eff39": {
+    "key": "b3c3a2e160d84c2eff39",
+    "file": "b3c3a2e160d84c2eff39.glb",
+    "prompt": "Object: one umbrella, still recognizable as a umbrella.\nInherited: domed fabric canopy, eight metal ribs, straight shaft with handle, hand-held grip.\nMutation: none, this is the unmodified original object.\nGeometry: all added parts are physically connected with visible joints, separate readable components, one single object, full object visible, centered on a plain light grey studio background, soft studio lighting, no text, no logo, no people, no floating parts.\nStyle: coherent premium industrial 3D product design, waterproof nylon and aluminum ribs, game-ready asset.",
+    "nodeId": "n_15abaa991a",
+    "nodeLabel": "雨伞 G0",
+    "family": "umbrella",
+    "generation": 0,
+    "taskId": 4780091,
+    "bytes": 1227948,
+    "createdAt": "2026-11-06T12:14:42.527Z",
+    "modelVersion": "G1-Turbo",
+    "originalBytes": 13431364,
+    "optimized": true
+  },
+  "dc203f425564557f45e7": {
+    "key": "dc203f425564557f45e7",
+    "file": "dc203f425564557f45e7.glb",
+    "prompt": "Object: one trash bin, still recognizable as a trash bin.\nInherited: cylindrical bin body, open top mouth, flat lid, cylindrical silhouette.\nMutation: none, this is the unmodified original object.\nGeometry: all added parts are physically connected with visible joints, separate readable components, one single object, full object visible, centered on a plain light grey studio background, soft studio lighting, no text, no logo, no people, no floating parts.\nStyle: coherent premium industrial 3D product design, brushed stainless steel and matte plastic, game-ready asset.",
+    "nodeId": "n_5a6ce370c0",
+    "nodeLabel": "垃圾桶 G0",
+    "family": "bin",
+    "generation": 0,
+    "taskId": 4780372,
+    "bytes": 1473600,
+    "createdAt": "2026-11-06T12:18:38.433Z",
+    "modelVersion": "G1-Turbo",
+    "originalBytes": 15177700,
+    "optimized": true
+  }
+}

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {newWorkspace,addGeneration,buildPrompt,decodeWorkspace,MUTATIONS} from '../src/workshop/state';
+let s=newWorkspace('茶壶');s=addGeneration(s,null,'一只矮胖的白色陶瓷茶壶，有圆形把手和短壶嘴。');
+const root=s.nodes[0];root.status='ready';root.url='/models/a5f0b5a6e391520efc29.glb';
+s=addGeneration(s,root.id,'壶底长出三只可弯曲的足。');s.nodes[1].status='ready';s.nodes[1].url=root.url;
+s=addGeneration(s,root.id,'把壶嘴变成能探查周围的触角。');
+assert.equal(s.nodes[1].parentId,root.id);assert.equal(s.nodes[2].parentId,root.id);assert.equal(s.nodes[2].generation,1);
+assert.ok(buildPrompt(s,root.id,'长出翅膀').includes(root.instruction));assert.ok(!buildPrompt(s,root.id,'长出翅膀').includes('三只可弯曲的足'));
+assert.deepEqual(decodeWorkspace(JSON.stringify(s)),s);assert.equal(decodeWorkspace('bad'),null);assert.ok(MUTATIONS.length>=4);
+const invalid=structuredClone(s);invalid.nodes[0].parentId=invalid.nodes[2].id;assert.equal(decodeWorkspace(JSON.stringify(invalid)),null);
+assert.throws(()=>addGeneration(s,null,'我还想生成另外一个全新的物品第一代。'),/第一代/);assert.throws(()=>addGeneration(s,s.nodes[2].id,'我想在这一代的基础上继续进化出新的结构。'),/完成/);
+const long=structuredClone(s);long.nodes[0].instruction='初'.repeat(1400);long.nodes[1].instruction='变'.repeat(1400);long.nodes[2].instruction='异'.repeat(1400);assert.ok(buildPrompt(long,long.nodes[1].id,'新'.repeat(1400)).length<=7000);
+console.log('Workshop checks passed: editable prompts, ancestral inheritance, real branches, safe saved state, parent readiness.');

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';import path from 'node:path';
+const folder=path.resolve('.run',`workshop-api-${Date.now()}`);fs.mkdirSync(folder,{recursive:true});
+process.env.MODEL_DIR=folder;process.env.AHOLO_API_BASE='https://aholo-test.invalid';process.env.AHOLO_API_KEY='local-test-key';
+const original=globalThis.fetch;let creates=0,downloads=0,status=2;
+globalThis.fetch=async(input,init)=>{const url=String(input);if(url.endsWith('/task/create')){creates++;assert.equal((init?.headers as Record<string,string>).Authorization,'local-test-key');await new Promise(r=>setTimeout(r,15));return new Response(JSON.stringify({c:'0',d:900+creates}));}if(url.includes('/task/get'))return new Response(JSON.stringify({c:'0',d:{status,outputs:[{content:'https://files.invalid/generated.glb'}]}}));if(url.endsWith('.glb')){downloads++;await new Promise(r=>setTimeout(r,30));const bytes=Buffer.alloc(1200);bytes.write('glTF');return new Response(bytes);}throw new Error('Unexpected fetch');};
+try{const api=await import('../server/lux3d');const opts={prompt:'One coherent ceramic teapot with three connected walking legs.'};
+ const [a,b]=await Promise.all([api.createTextTo3D(opts),api.createTextTo3D(opts)]);assert.equal(creates,1);assert.deepEqual(a,b);assert.equal((await api.createTextTo3D(opts)).taskId,901);assert.equal(creates,1);assert.ok(fs.existsSync(path.join(folder,'.jobs.json')));assert.equal(JSON.parse(fs.readFileSync(path.join(folder,'.jobs.json'),'utf8'))[0].prompt,opts.prompt);
+ const resumed=await import(new URL('../server/lux3d.ts?resume-check=1',import.meta.url).href);assert.equal(resumed.jobs.get('901').prompt,opts.prompt);assert.equal((await resumed.createTextTo3D(opts)).taskId,901);assert.equal(creates,1);
+ assert.equal((await api.getTask(901)).status,2);status=3;const [x,y]=await Promise.all([api.getTask(901),api.getTask(901)]);assert.equal(downloads,1);assert.equal(x.url,y.url);assert.ok(fs.existsSync(path.join(folder,x.url!.split('/').at(-1)!)));assert.equal(api.jobs.size,0);assert.ok((await api.createTextTo3D(opts)).cachedUrl);assert.equal(creates,1);
+ status=4;await api.createTextTo3D({prompt:opts.prompt+' mutated'});assert.equal((await api.getTask(902)).status,4);assert.ok(!api.jobs.has('902'));assert.equal((await api.getTask(901)).status,3); // Completed records remain cacheable despite upstream status.
+ console.log('Workshop API passed: concurrent submit deduplication, persisted task metadata, polling, one awaited GLB download and completed cache.');
+}finally{globalThis.fetch=original;for(const file of fs.readdirSync(folder))fs.unlinkSync(path.join(folder,file));fs.rmdirSync(folder);}
