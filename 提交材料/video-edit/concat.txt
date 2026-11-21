@@ -1,0 +1,8 @@
+file 'seg-intro.mp4'
+file 'seg-cup1.mp4'
+file 'seg-cup2.mp4'
+file 'seg-chair.mp4'
+file 'seg-umbrella.mp4'
+file 'seg-bin.mp4'
+file 'seg-workshop.mp4'
+file 'seg-outro.mp4'

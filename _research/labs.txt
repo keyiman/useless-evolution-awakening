@@ -1,0 +1,253 @@
+﻿============================== https___labs_aholo3d_cn_quickstart 1
+Aholo 空间智能实验室｜3D重建、生成与空间智能API
+============================== https___labs_aholo3d_cn_api_docs_mcp 377
+MCP | AHOLO API
+跳到主要内容
+空间智能实验室
+指南
+API
+发行说明
+简介
+快速开始
+SDK
+Skills
+MCP
+发行说明
+MCP
+本页总览
+MCP
+Model Context Protocol（MCP）
+让 Cursor、Claude Desktop 等 Agent Studio 通过标准协议调用 Aholo 能力。官方包
+@manycore/aholo-sdk-mcp
+在本地以 stdio 方式运行，底层封装
+@manycore/aholo-sdk-*
+npm SDK。
+使用前请先在
+快速开始
+申请
+API Key
+，并阅读
+授权
+。
+MCP、Skill 与 SDK 怎么选
+​
+方式
+适合谁
+典型场景
+MCP
+（本页）
+在 Cursor / Claude 里用对话驱动
+上传本地文件、提交重建、查任务进度
+Skill
+同上，偏工作流与参数约束
+复杂 3DGS 流程、SkillHub 一键安装
+SDK
+写业务代码的开发者
+后端服务、脚本、生产环境集成
+MCP 与 Skill 可配合使用：MCP 提供 tool 调用能力，Skill 提供对话策略与业务约束。
+前置要求
+​
+Node.js
+≥ 18
+Aholo API Key
+：
+labs.aholo3d.cn/api-keys
+安装
+​
+Cursor
+​
+编辑
+~/.cursor/mcp.json
+（项目级可用
+.cursor/mcp.json
+）：
+{
+"mcpServers"
+:
+{
+"aholo-sdk-mcp"
+:
+{
+"type"
+:
+"stdio"
+,
+"command"
+:
+"npx"
+,
+"args"
+:
+[
+"-y"
+,
+"@manycore/aholo-sdk-mcp"
+]
+,
+"env"
+:
+{
+"AHOLO_API_KEY"
+:
+"your_api_key_here"
+,
+"AHOLO_REGION"
+:
+"cn"
+}
+}
+}
+}
+Claude Desktop
+​
+编辑配置文件（macOS：
+~/Library/Application Support/Claude/claude_desktop_config.json
+）：
+{
+"mcpServers"
+:
+{
+"aholo-sdk-mcp"
+:
+{
+"command"
+:
+"npx"
+,
+"args"
+:
+[
+"-y"
+,
+"@manycore/aholo-sdk-mcp"
+]
+,
+"env"
+:
+{
+"AHOLO_API_KEY"
+:
+"your_api_key_here"
+,
+"AHOLO_REGION"
+:
+"cn"
+}
+}
+}
+}
+保存后
+重启
+Agent / Studio。在 Cursor 中可在
+Settings → MCP
+查看连接状态。
+验证
+​
+AHOLO_API_KEY=your_key npx -y @manycore/aholo-sdk-mcp
+未设置
+AHOLO_API_KEY
+时会提示并退出，属正常行为。
+环境变量
+​
+变量
+必填
+说明
+AHOLO_API_KEY
+是
+Aholo API Key
+AHOLO_REGION
+否
+cn
+（默认）
+安全提示
+请勿将 API Key 提交到公开仓库或分享给他人。推荐仅通过
+mcp.json
+的
+env
+或本机环境变量注入。
+使用说明
+​
+文件上传
+​
+本地文件通过
+localPath
+传入，SDK 直接读磁盘上传至 CDN，
+二进制不经过 MCP 协议
+。
+World 重建（scene）
+​
+场景
+推荐 Tool
+单个物体 / 产品 / 手办
+world_reconstruct_object_from_files
+或
+world_reconstruct_object
+室内 / 房间环拍
+world_reconstruct_space_from_files
+或
+world_reconstruct_space
+图片重建须
+≥ 20 张
+（
+.jpg
+/
+.jpeg
+/
+.png
+/
+.webp
+）；普通视频
+resourceType=video
+（
+.mp4
+/
+.mov
+）；Insta360 全景
+resourceType=insv
+（
+.insv
+）
+useMask=true
+表示抠图（主体分割）
+taskQuality
+默认
+normal
+；「快速预览」→
+low
+，「高质量 / 专业」→
+high
+World 生成（Spatial Gen）
+​
+world_generate
+用于
+AI 生成世界
+（非多图重建）：
+纯文案
+：只传
+prompt
+单张参考图
+：只传
+localPath
+（内部先
+upload_asset
+）
+图文组合
+：
+prompt
++
+localPath
+（至多 1 张图）
+参考图
+只接受本地
+localPath
+，不接受外部网络 URL。多图/视频请用
+world_reconstruct_*
+。
+长任务
+​
+提交类 tool 默认
+wait=false
+，立即返回
+worldId
+/
+taskId

@@ -1,0 +1,11 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { ORGAN_LIST } from '../src/engine/organs';
+import { makeRoot } from '../src/engine/evolve';
+import { TRIAL_PROPS } from '../src/engine/trialProps';
+const entries = Object.values(JSON.parse(readFileSync('public/models/manifest.json','utf8'))) as {prompt:string;file:string}[];
+const find = (prompt:string) => { const item = entries.find(e => e.prompt === prompt); return item ? `/models/${item.file}` : null; };
+const bases = Object.fromEntries((['cup','chair','umbrella','bin'] as const).map(f => [f, find(makeRoot(f, 'LAB-001').prompt)]));
+const organs = Object.fromEntries(ORGAN_LIST.map(o => [o.id,find(o.prompt)]));
+const trials=Object.fromEntries(TRIAL_PROPS.map(p=>[p.id,find(p.prompt)]));
+writeFileSync('src/lab/assetCatalog.json',JSON.stringify({bases,organs,trials},null,2));
+console.log('Catalog:', Object.values(bases).filter(Boolean).length,'bases,',Object.values(organs).filter(Boolean).length,'organs');

@@ -1,0 +1,16 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1366, height: 768 } });
+const errs = [];
+p.on('pageerror', (e) => errs.push(e.message));
+await p.goto('http://127.0.0.1:5174/?r=1366', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(6000);
+console.log('body overflow', await p.evaluate(() => ({w: document.body.scrollWidth, h: document.body.scrollHeight, iw: innerWidth, ih: innerHeight})));
+console.log('tray', await p.locator('.lab-tray').evaluate((el) => ({h: el.clientHeight, sh: el.scrollHeight})));
+await p.locator('.tray-cat', { hasText: '顶部' }).click();
+console.log('top cards', await p.locator('.organ-card').count());
+await p.locator('.tray-cat', { hasText: '侧面' }).click();
+console.log('side cards', await p.locator('.organ-card').count());
+await p.screenshot({ path: '_research/lab-1366.png' });
+console.log('errs', errs.slice(0,3));
+await b.close();

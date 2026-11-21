@@ -1,0 +1,1223 @@
+{
+  "ruleVersion": "ue-1.1.0",
+  "seeds": 100,
+  "families": 4,
+  "runs": 400,
+  "determinism": {
+    "checked": 400,
+    "mismatches": 0
+  },
+  "invalid": 0,
+  "duplicateCandidateSets": 0,
+  "maxParts": 7,
+  "generations": [
+    {
+      "family": "cup",
+      "g": 0,
+      "utility": 0.904,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "cup",
+      "g": 1,
+      "utility": 0.727,
+      "absurdity": 0.49,
+      "q": 0.551
+    },
+    {
+      "family": "cup",
+      "g": 2,
+      "utility": 0.544,
+      "absurdity": 0.511,
+      "q": 0.59
+    },
+    {
+      "family": "cup",
+      "g": 3,
+      "utility": 0.179,
+      "absurdity": 0.686,
+      "q": 0.742
+    },
+    {
+      "family": "cup",
+      "g": 4,
+      "utility": 0.185,
+      "absurdity": 0.861,
+      "q": 0.678
+    },
+    {
+      "family": "cup",
+      "g": 5,
+      "utility": 0.19,
+      "absurdity": 1,
+      "q": 0.752
+    },
+    {
+      "family": "cup",
+      "g": 0,
+      "utility": 0.904,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "cup",
+      "g": 1,
+      "utility": 0.801,
+      "absurdity": 0.352,
+      "q": 0.477
+    },
+    {
+      "family": "cup",
+      "g": 2,
+      "utility": 0.691,
+      "absurdity": 0.669,
+      "q": 0.629
+    },
+    {
+      "family": "cup",
+      "g": 3,
+      "utility": 0.651,
+      "absurdity": 0.69,
+      "q": 0.635
+    },
+    {
+      "family": "cup",
+      "g": 4,
+      "utility": 0.531,
+      "absurdity": 0.959,
+      "q": 0.784
+    },
+    {
+      "family": "cup",
+      "g": 5,
+      "utility": 0.407,
+      "absurdity": 1,
+      "q": 0.827
+    },
+    {
+      "family": "cup",
+      "g": 0,
+      "utility": 0.904,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "cup",
+      "g": 1,
+      "utility": 0.227,
+      "absurdity": 0.258,
+      "q": 0.517
+    },
+    {
+      "family": "cup",
+      "g": 2,
+      "utility": 0.205,
+      "absurdity": 0.357,
+      "q": 0.411
+    },
+    {
+      "family": "cup",
+      "g": 3,
+      "utility": 0.187,
+      "absurdity": 0.535,
+      "q": 0.492
+    },
+    {
+      "family": "cup",
+      "g": 4,
+      "utility": 0.184,
+      "absurdity": 0.632,
+      "q": 0.524
+    },
+    {
+      "family": "cup",
+      "g": 5,
+      "utility": 0.165,
+      "absurdity": 0.81,
+      "q": 0.593
+    },
+    {
+      "family": "cup",
+      "g": 0,
+      "utility": 0.904,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "cup",
+      "g": 1,
+      "utility": 0.863,
+      "absurdity": 0.105,
+      "q": 0.316
+    },
+    {
+      "family": "cup",
+      "g": 2,
+      "utility": 0.845,
+      "absurdity": 0.241,
+      "q": 0.376
+    },
+    {
+      "family": "cup",
+      "g": 3,
+      "utility": 0.693,
+      "absurdity": 0.419,
+      "q": 0.469
+    },
+    {
+      "family": "cup",
+      "g": 4,
+      "utility": 0.21,
+      "absurdity": 0.594,
+      "q": 0.708
+    },
+    {
+      "family": "cup",
+      "g": 5,
+      "utility": 0.19,
+      "absurdity": 0.772,
+      "q": 0.603
+    },
+    {
+      "family": "cup",
+      "g": 0,
+      "utility": 0.904,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "cup",
+      "g": 1,
+      "utility": 0.801,
+      "absurdity": 0.352,
+      "q": 0.477
+    },
+    {
+      "family": "cup",
+      "g": 2,
+      "utility": 0.755,
+      "absurdity": 0.374,
+      "q": 0.488
+    },
+    {
+      "family": "cup",
+      "g": 3,
+      "utility": 0.166,
+      "absurdity": 0.686,
+      "q": 0.742
+    },
+    {
+      "family": "cup",
+      "g": 4,
+      "utility": 0.172,
+      "absurdity": 0.861,
+      "q": 0.678
+    },
+    {
+      "family": "cup",
+      "g": 5,
+      "utility": 0.178,
+      "absurdity": 1,
+      "q": 0.752
+    },
+    {
+      "family": "cup",
+      "g": 0,
+      "utility": 0.904,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "cup",
+      "g": 1,
+      "utility": 0.807,
+      "absurdity": 0.186,
+      "q": 0.364
+    },
+    {
+      "family": "cup",
+      "g": 2,
+      "utility": 0.591,
+      "absurdity": 0.29,
+      "q": 0.514
+    },
+    {
+      "family": "cup",
+      "g": 3,
+      "utility": 0.67,
+      "absurdity": 0.389,
+      "q": 0.514
+    },
+    {
+      "family": "cup",
+      "g": 4,
+      "utility": 0.596,
+      "absurdity": 0.494,
+      "q": 0.552
+    },
+    {
+      "family": "cup",
+      "g": 5,
+      "utility": 0.211,
+      "absurdity": 0.669,
+      "q": 0.769
+    },
+    {
+      "family": "chair",
+      "g": 0,
+      "utility": 0.899,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "chair",
+      "g": 1,
+      "utility": 0.884,
+      "absurdity": 0.185,
+      "q": 0.328
+    },
+    {
+      "family": "chair",
+      "g": 2,
+      "utility": 0.841,
+      "absurdity": 0.404,
+      "q": 0.472
+    },
+    {
+      "family": "chair",
+      "g": 3,
+      "utility": 0.858,
+      "absurdity": 0.426,
+      "q": 0.497
+    },
+    {
+      "family": "chair",
+      "g": 4,
+      "utility": 0.334,
+      "absurdity": 0.601,
+      "q": 0.746
+    },
+    {
+      "family": "chair",
+      "g": 5,
+      "utility": 0.349,
+      "absurdity": 0.87,
+      "q": 0.711
+    },
+    {
+      "family": "chair",
+      "g": 0,
+      "utility": 0.899,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "chair",
+      "g": 1,
+      "utility": 0.795,
+      "absurdity": 0.261,
+      "q": 0.34
+    },
+    {
+      "family": "chair",
+      "g": 2,
+      "utility": 0.769,
+      "absurdity": 0.398,
+      "q": 0.377
+    },
+    {
+      "family": "chair",
+      "g": 3,
+      "utility": 0.819,
+      "absurdity": 0.537,
+      "q": 0.495
+    },
+    {
+      "family": "chair",
+      "g": 4,
+      "utility": 0.747,
+      "absurdity": 0.806,
+      "q": 0.618
+    },
+    {
+      "family": "chair",
+      "g": 5,
+      "utility": 0.325,
+      "absurdity": 0.961,
+      "q": 0.863
+    },
+    {
+      "family": "chair",
+      "g": 0,
+      "utility": 0.899,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "chair",
+      "g": 1,
+      "utility": 0.856,
+      "absurdity": 0.352,
+      "q": 0.45
+    },
+    {
+      "family": "chair",
+      "g": 2,
+      "utility": 0.728,
+      "absurdity": 0.53,
+      "q": 0.522
+    },
+    {
+      "family": "chair",
+      "g": 3,
+      "utility": 0.315,
+      "absurdity": 0.705,
+      "q": 0.748
+    },
+    {
+      "family": "chair",
+      "g": 4,
+      "utility": 0.374,
+      "absurdity": 0.727,
+      "q": 0.658
+    },
+    {
+      "family": "chair",
+      "g": 5,
+      "utility": 0.516,
+      "absurdity": 0.79,
+      "q": 0.743
+    },
+    {
+      "family": "chair",
+      "g": 0,
+      "utility": 0.899,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "chair",
+      "g": 1,
+      "utility": 0.797,
+      "absurdity": 0.105,
+      "q": 0.342
+    },
+    {
+      "family": "chair",
+      "g": 2,
+      "utility": 0.4,
+      "absurdity": 0.332,
+      "q": 0.57
+    },
+    {
+      "family": "chair",
+      "g": 3,
+      "utility": 0.408,
+      "absurdity": 0.601,
+      "q": 0.57
+    },
+    {
+      "family": "chair",
+      "g": 4,
+      "utility": 0.4,
+      "absurdity": 0.623,
+      "q": 0.585
+    },
+    {
+      "family": "chair",
+      "g": 5,
+      "utility": 0.383,
+      "absurdity": 0.771,
+      "q": 0.673
+    },
+    {
+      "family": "chair",
+      "g": 0,
+      "utility": 0.899,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "chair",
+      "g": 1,
+      "utility": 0.833,
+      "absurdity": 0.435,
+      "q": 0.485
+    },
+    {
+      "family": "chair",
+      "g": 2,
+      "utility": 0.849,
+      "absurdity": 0.456,
+      "q": 0.5
+    },
+    {
+      "family": "chair",
+      "g": 3,
+      "utility": 0.716,
+      "absurdity": 0.634,
+      "q": 0.585
+    },
+    {
+      "family": "chair",
+      "g": 4,
+      "utility": 0.302,
+      "absurdity": 0.809,
+      "q": 0.809
+    },
+    {
+      "family": "chair",
+      "g": 5,
+      "utility": 0.24,
+      "absurdity": 1,
+      "q": 0.774
+    },
+    {
+      "family": "chair",
+      "g": 0,
+      "utility": 0.899,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "chair",
+      "g": 1,
+      "utility": 0.916,
+      "absurdity": 0.105,
+      "q": 0.305
+    },
+    {
+      "family": "chair",
+      "g": 2,
+      "utility": 0.874,
+      "absurdity": 0.374,
+      "q": 0.487
+    },
+    {
+      "family": "chair",
+      "g": 3,
+      "utility": 0.834,
+      "absurdity": 0.51,
+      "q": 0.557
+    },
+    {
+      "family": "chair",
+      "g": 4,
+      "utility": 0.81,
+      "absurdity": 0.615,
+      "q": 0.59
+    },
+    {
+      "family": "chair",
+      "g": 5,
+      "utility": 0.323,
+      "absurdity": 0.79,
+      "q": 0.812
+    },
+    {
+      "family": "umbrella",
+      "g": 0,
+      "utility": 0.892,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "umbrella",
+      "g": 1,
+      "utility": 0.334,
+      "absurdity": 0.388,
+      "q": 0.556
+    },
+    {
+      "family": "umbrella",
+      "g": 2,
+      "utility": 0.318,
+      "absurdity": 0.503,
+      "q": 0.476
+    },
+    {
+      "family": "umbrella",
+      "g": 3,
+      "utility": 0.303,
+      "absurdity": 0.613,
+      "q": 0.517
+    },
+    {
+      "family": "umbrella",
+      "g": 4,
+      "utility": 0.274,
+      "absurdity": 0.749,
+      "q": 0.595
+    },
+    {
+      "family": "umbrella",
+      "g": 5,
+      "utility": 0.149,
+      "absurdity": 1,
+      "q": 0.826
+    },
+    {
+      "family": "umbrella",
+      "g": 0,
+      "utility": 0.892,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "umbrella",
+      "g": 1,
+      "utility": 0.795,
+      "absurdity": 0.261,
+      "q": 0.337
+    },
+    {
+      "family": "umbrella",
+      "g": 2,
+      "utility": 0.666,
+      "absurdity": 0.57,
+      "q": 0.564
+    },
+    {
+      "family": "umbrella",
+      "g": 3,
+      "utility": 0.511,
+      "absurdity": 0.839,
+      "q": 0.689
+    },
+    {
+      "family": "umbrella",
+      "g": 4,
+      "utility": 0.46,
+      "absurdity": 1,
+      "q": 0.7
+    },
+    {
+      "family": "umbrella",
+      "g": 5,
+      "utility": 0.44,
+      "absurdity": 1,
+      "q": 0.717
+    },
+    {
+      "family": "umbrella",
+      "g": 0,
+      "utility": 0.892,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "umbrella",
+      "g": 1,
+      "utility": 0.805,
+      "absurdity": 0.105,
+      "q": 0.336
+    },
+    {
+      "family": "umbrella",
+      "g": 2,
+      "utility": 0.772,
+      "absurdity": 0.374,
+      "q": 0.483
+    },
+    {
+      "family": "umbrella",
+      "g": 3,
+      "utility": 0.687,
+      "absurdity": 0.643,
+      "q": 0.619
+    },
+    {
+      "family": "umbrella",
+      "g": 4,
+      "utility": 0.426,
+      "absurdity": 0.936,
+      "q": 0.794
+    },
+    {
+      "family": "umbrella",
+      "g": 5,
+      "utility": 0.383,
+      "absurdity": 1,
+      "q": 0.747
+    },
+    {
+      "family": "umbrella",
+      "g": 0,
+      "utility": 0.892,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "umbrella",
+      "g": 1,
+      "utility": 0.858,
+      "absurdity": 0.352,
+      "q": 0.446
+    },
+    {
+      "family": "umbrella",
+      "g": 2,
+      "utility": 0.691,
+      "absurdity": 0.613,
+      "q": 0.563
+    },
+    {
+      "family": "umbrella",
+      "g": 3,
+      "utility": 0.493,
+      "absurdity": 0.791,
+      "q": 0.639
+    },
+    {
+      "family": "umbrella",
+      "g": 4,
+      "utility": 0.187,
+      "absurdity": 1,
+      "q": 0.795
+    },
+    {
+      "family": "umbrella",
+      "g": 5,
+      "utility": 0.17,
+      "absurdity": 1,
+      "q": 0.705
+    },
+    {
+      "family": "umbrella",
+      "g": 0,
+      "utility": 0.892,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "umbrella",
+      "g": 1,
+      "utility": 0.805,
+      "absurdity": 0.105,
+      "q": 0.336
+    },
+    {
+      "family": "umbrella",
+      "g": 2,
+      "utility": 0.793,
+      "absurdity": 0.126,
+      "q": 0.318
+    },
+    {
+      "family": "umbrella",
+      "g": 3,
+      "utility": 0.731,
+      "absurdity": 0.304,
+      "q": 0.374
+    },
+    {
+      "family": "umbrella",
+      "g": 4,
+      "utility": 0.701,
+      "absurdity": 0.441,
+      "q": 0.43
+    },
+    {
+      "family": "umbrella",
+      "g": 5,
+      "utility": 0.2,
+      "absurdity": 0.746,
+      "q": 0.713
+    },
+    {
+      "family": "umbrella",
+      "g": 0,
+      "utility": 0.892,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "umbrella",
+      "g": 1,
+      "utility": 0.878,
+      "absurdity": 0.105,
+      "q": 0.304
+    },
+    {
+      "family": "umbrella",
+      "g": 2,
+      "utility": 0.85,
+      "absurdity": 0.374,
+      "q": 0.48
+    },
+    {
+      "family": "umbrella",
+      "g": 3,
+      "utility": 0.817,
+      "absurdity": 0.51,
+      "q": 0.554
+    },
+    {
+      "family": "umbrella",
+      "g": 4,
+      "utility": 0.673,
+      "absurdity": 0.688,
+      "q": 0.636
+    },
+    {
+      "family": "umbrella",
+      "g": 5,
+      "utility": 0.578,
+      "absurdity": 0.75,
+      "q": 0.672
+    },
+    {
+      "family": "bin",
+      "g": 0,
+      "utility": 0.725,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "bin",
+      "g": 1,
+      "utility": 0.74,
+      "absurdity": 0.105,
+      "q": 0.304
+    },
+    {
+      "family": "bin",
+      "g": 2,
+      "utility": 0.702,
+      "absurdity": 0.374,
+      "q": 0.485
+    },
+    {
+      "family": "bin",
+      "g": 3,
+      "utility": 0.704,
+      "absurdity": 0.552,
+      "q": 0.503
+    },
+    {
+      "family": "bin",
+      "g": 4,
+      "utility": 0.511,
+      "absurdity": 1,
+      "q": 0.754
+    },
+    {
+      "family": "bin",
+      "g": 5,
+      "utility": 0.432,
+      "absurdity": 1,
+      "q": 0.713
+    },
+    {
+      "family": "bin",
+      "g": 0,
+      "utility": 0.725,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "bin",
+      "g": 1,
+      "utility": 0.73,
+      "absurdity": 0.261,
+      "q": 0.297
+    },
+    {
+      "family": "bin",
+      "g": 2,
+      "utility": 0.736,
+      "absurdity": 0.359,
+      "q": 0.356
+    },
+    {
+      "family": "bin",
+      "g": 3,
+      "utility": 0.732,
+      "absurdity": 0.381,
+      "q": 0.392
+    },
+    {
+      "family": "bin",
+      "g": 4,
+      "utility": 0.701,
+      "absurdity": 0.559,
+      "q": 0.466
+    },
+    {
+      "family": "bin",
+      "g": 5,
+      "utility": 0.663,
+      "absurdity": 0.667,
+      "q": 0.511
+    },
+    {
+      "family": "bin",
+      "g": 0,
+      "utility": 0.725,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "bin",
+      "g": 1,
+      "utility": 0.757,
+      "absurdity": 0.201,
+      "q": 0.34
+    },
+    {
+      "family": "bin",
+      "g": 2,
+      "utility": 0.784,
+      "absurdity": 0.296,
+      "q": 0.376
+    },
+    {
+      "family": "bin",
+      "g": 3,
+      "utility": 0.327,
+      "absurdity": 0.601,
+      "q": 0.659
+    },
+    {
+      "family": "bin",
+      "g": 4,
+      "utility": 0.32,
+      "absurdity": 0.779,
+      "q": 0.594
+    },
+    {
+      "family": "bin",
+      "g": 5,
+      "utility": 0.313,
+      "absurdity": 0.84,
+      "q": 0.672
+    },
+    {
+      "family": "bin",
+      "g": 0,
+      "utility": 0.725,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "bin",
+      "g": 1,
+      "utility": 0.29,
+      "absurdity": 0.471,
+      "q": 0.617
+    },
+    {
+      "family": "bin",
+      "g": 2,
+      "utility": 0.289,
+      "absurdity": 0.649,
+      "q": 0.549
+    },
+    {
+      "family": "bin",
+      "g": 3,
+      "utility": 0.292,
+      "absurdity": 0.739,
+      "q": 0.607
+    },
+    {
+      "family": "bin",
+      "g": 4,
+      "utility": 0.298,
+      "absurdity": 0.876,
+      "q": 0.679
+    },
+    {
+      "family": "bin",
+      "g": 5,
+      "utility": 0.288,
+      "absurdity": 1,
+      "q": 0.773
+    },
+    {
+      "family": "bin",
+      "g": 0,
+      "utility": 0.725,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "bin",
+      "g": 1,
+      "utility": 0.73,
+      "absurdity": 0.261,
+      "q": 0.297
+    },
+    {
+      "family": "bin",
+      "g": 2,
+      "utility": 0.529,
+      "absurdity": 0.436,
+      "q": 0.513
+    },
+    {
+      "family": "bin",
+      "g": 3,
+      "utility": 0.465,
+      "absurdity": 0.835,
+      "q": 0.687
+    },
+    {
+      "family": "bin",
+      "g": 4,
+      "utility": 0.329,
+      "absurdity": 1,
+      "q": 0.821
+    },
+    {
+      "family": "bin",
+      "g": 5,
+      "utility": 0.217,
+      "absurdity": 1,
+      "q": 0.85
+    },
+    {
+      "family": "bin",
+      "g": 0,
+      "utility": 0.725,
+      "absurdity": 0.083,
+      "q": 0.261
+    },
+    {
+      "family": "bin",
+      "g": 1,
+      "utility": 0.734,
+      "absurdity": 0.22,
+      "q": 0.336
+    },
+    {
+      "family": "bin",
+      "g": 2,
+      "utility": 0.751,
+      "absurdity": 0.325,
+      "q": 0.401
+    },
+    {
+      "family": "bin",
+      "g": 3,
+      "utility": 0.753,
+      "absurdity": 0.347,
+      "q": 0.431
+    },
+    {
+      "family": "bin",
+      "g": 4,
+      "utility": 0.754,
+      "absurdity": 0.449,
+      "q": 0.47
+    },
+    {
+      "family": "bin",
+      "g": 5,
+      "utility": 0.638,
+      "absurdity": 0.723,
+      "q": 0.636
+    }
+  ],
+  "testOutcomes": {
+    "success": 1427,
+    "fail": 973
+  },
+  "sample": [
+    {
+      "g": 0,
+      "label": "水杯 G0",
+      "hash": "b99c478969e0",
+      "mutation": null,
+      "metrics": {
+        "hold": 0.93,
+        "pour": 0.9,
+        "drink": 0.9,
+        "clean": 0.88
+      },
+      "score": {
+        "utility": 0.904,
+        "novelty": 0.12,
+        "absurdity": 0.083,
+        "recognition": 1,
+        "delta": 0,
+        "q": 0.261
+      },
+      "parts": [],
+      "prompt": "Mutation: none, this is the unmodified original object."
+    },
+    {
+      "g": 1,
+      "label": "水杯 G1 · 巨柄水杯",
+      "hash": "06f074ed1f0c",
+      "mutation": {
+        "op": "M2",
+        "title": "巨柄水杯",
+        "changes": [
+          "把手放大至 190%"
+        ],
+        "consequences": [
+          "清洗 -10%",
+          "倒出 -5%",
+          "盛水 +3%"
+        ]
+      },
+      "metrics": {
+        "hold": 0.96,
+        "pour": 0.85,
+        "drink": 0.9,
+        "clean": 0.78
+      },
+      "score": {
+        "utility": 0.881,
+        "novelty": 0.22,
+        "absurdity": 0.105,
+        "recognition": 1,
+        "delta": 0.052,
+        "q": 0.308
+      },
+      "parts": [],
+      "prompt": "Mutation: an oversized handle."
+    },
+    {
+      "g": 2,
+      "label": "水杯 G2 · 密闭水杯",
+      "hash": "3394c572ef6c",
+      "mutation": {
+        "op": "M3",
+        "title": "密闭水杯",
+        "changes": [
+          "杯口加装密封盖，开口被完全封死"
+        ],
+        "consequences": [
+          "饮用 -88%",
+          "倒出 -83%",
+          "盛水 +4%",
+          "结构冲突 ×1"
+        ]
+      },
+      "metrics": {
+        "hold": 1,
+        "pour": 0.02,
+        "drink": 0.02,
+        "clean": 0.78
+      },
+      "score": {
+        "utility": 0.201,
+        "novelty": 0.4,
+        "absurdity": 0.28,
+        "recognition": 0.75,
+        "delta": 1,
+        "q": 0.554
+      },
+      "parts": [],
+      "prompt": "Mutation: the opening is sealed shut by a circular lid with no outlet; an oversized handle."
+    },
+    {
+      "g": 3,
+      "label": "水杯 G3 · 封口水杯",
+      "hash": "670e7632a39f",
+      "mutation": {
+        "op": "M3",
+        "title": "封口水杯",
+        "changes": [
+          "杯口加装密封盖，开口被完全封死"
+        ],
+        "consequences": [
+          "结构冲突 ×2"
+        ]
+      },
+      "metrics": {
+        "hold": 1,
+        "pour": 0.02,
+        "drink": 0.02,
+        "clean": 0.78
+      },
+      "score": {
+        "utility": 0.201,
+        "novelty": 0.43,
+        "absurdity": 0.455,
+        "recognition": 0.75,
+        "delta": 0.24,
+        "q": 0.463
+      },
+      "parts": [],
+      "prompt": "Mutation: the opening is sealed shut by a circular lid with no outlet; an oversized handle."
+    },
+    {
+      "g": 4,
+      "label": "水杯 G4 · 共生冲突·封口水杯",
+      "hash": "d24d074f9af1",
+      "mutation": {
+        "op": "M3",
+        "rare": "mutual",
+        "title": "共生冲突·封口水杯",
+        "changes": [
+          "杯口加装密封盖，开口被完全封死",
+          "两套各自合理的子系统开始互相阻断"
+        ],
+        "consequences": [
+          "结构冲突 ×3",
+          "盛水 -18%",
+          "结构冲突 ×4"
+        ]
+      },
+      "metrics": {
+        "hold": 0.82,
+        "pour": 0.02,
+        "drink": 0.02,
+        "clean": 0.78
+      },
+      "score": {
+        "utility": 0.181,
+        "novelty": 0.46,
+        "absurdity": 0.81,
+        "recognition": 0.75,
+        "delta": 0.524,
+        "q": 0.636
+      },
+      "parts": [],
+      "prompt": "Mutation: the opening is sealed shut by a circular lid with no outlet; an oversized handle."
+    },
+    {
+      "g": 5,
+      "label": "水杯 G5 · 共生冲突·寄生水杯",
+      "hash": "4c79b1aa2a4d",
+      "mutation": {
+        "op": "M6",
+        "rare": "mutual",
+        "title": "共生冲突·寄生水杯",
+        "changes": [
+          "新增自润滑杯柄机械手，只负责照顾其他部件",
+          "两套各自合理的子系统开始互相阻断"
+        ],
+        "consequences": [
+          "清洗 +10%",
+          "结构冲突 ×4",
+          "盛水 -18%",
+          "结构冲突 ×5"
+        ]
+      },
+      "metrics": {
+        "hold": 0.64,
+        "pour": 0.02,
+        "drink": 0.02,
+        "clean": 0.88
+      },
+      "score": {
+        "utility": 0.168,
+        "novelty": 0.56,
+        "absurdity": 1,
+        "recognition": 0.75,
+        "delta": 0.63,
+        "q": 0.744
+      },
+      "parts": [
+        "自润滑杯柄机械手"
+      ],
+      "prompt": "Mutation: the opening is sealed shut by a circular lid with no outlet; an oversized handle; added multi-joint robotic arm."
+    }
+  ],
+  "elapsedMs": 3255
+}

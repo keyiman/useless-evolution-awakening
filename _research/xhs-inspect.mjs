@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.connectOverCDP('http://127.0.0.1:9222');
+const ctx = b.contexts()[0];
+const pages = ctx.pages();
+console.log('pages', pages.length);
+for (const p of pages) console.log('PAGE', p.url(), await p.title().catch(()=>''));
+const p = pages[0];
+await p.waitForTimeout(3000);
+await p.screenshot({ path: '_research/xhs-login.png' });
+console.log('text', (await p.locator('body').innerText().catch(()=>'' )).slice(0,600));
+await b.close();

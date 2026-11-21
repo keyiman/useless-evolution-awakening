@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>废物进化论 · 物的觉醒 · 项目报告</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; color: #000; }
+body {
+  font-family: "Times New Roman", "SimSun", "宋体", serif;
+  font-size: 10.3pt;
+  line-height: 1.62;
+}
+.page {
+  width: 210mm; height: 297mm;
+  padding: 16mm 19mm 13mm;
+  background: #fff;
+  position: relative;
+  page-break-after: always;
+  overflow: hidden;
+}
+.page:last-child { page-break-after: auto; }
+h1, h2, h3, h4, .hei {
+  font-family: "Times New Roman", "SimHei", "黑体", sans-serif;
+  color: #000;
+  font-weight: 700;
+}
+h1 { font-size: 25pt; line-height: 1.18; margin: 0 0 3mm; }
+h2 {
+  font-size: 15.2pt; line-height: 1.25; margin: 0 0 4mm;
+  padding-bottom: 1.8mm; border-bottom: 1.2pt solid #000;
+  display: inline-block;
+}
+h3 { font-size: 11.3pt; margin: 4.4mm 0 1.5mm; }
+h4 { font-size: 10.4pt; margin: 3mm 0 1mm; }
+p { margin: 0 0 2.5mm; text-align: justify; }
+.lead { font-size: 11.1pt; line-height: 1.66; }
+.small { font-size: 9.1pt; line-height: 1.58; }
+.mono { font-family: "Cascadia Mono", Consolas, monospace; font-size: 8.3pt; }
+.en { font-family: "Times New Roman", serif; letter-spacing: .02em; }
+.runhead {
+  display: flex; justify-content: space-between;
+  font-family: "Times New Roman", "SimHei", "黑体", sans-serif;
+  font-size: 8.2pt; color: #000;
+  border-bottom: .5pt solid #000; padding-bottom: 1.4mm; margin-bottom: 6mm;
+}
+.runfoot {
+  position: absolute; left: 19mm; right: 19mm; bottom: 7mm;
+  display: flex; justify-content: space-between;
+  font-family: "Times New Roman", "SimHei", "黑体", sans-serif;
+  font-size: 7.8pt; color: #000;
+  border-top: .5pt solid #000; padding-top: 1.4mm;
+}
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 3.6mm; font-size: 8.7pt; line-height: 1.48; }
+th, td { border: .4pt solid #000; padding: 1.35mm 1.7mm; vertical-align: top; text-align: left; }
+th { background: #efefef; font-family: "Times New Roman", "SimHei", "黑体", sans-serif; font-weight: 700; }
+td.num { text-align: right; font-family: "Times New Roman", serif; white-space: nowrap; }
+figure { margin: 2mm 0 3mm; }
+figure img { width: 100%; display: block; border: .4pt solid #000; }
+figcaption { font-size: 8.2pt; line-height: 1.45; color: #000; margin-top: 1.2mm; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+.box { border: .5pt solid #000; padding: 2.8mm 3mm; background: #f7f7f7; }
+.box b { font-family: "Times New Roman", "SimHei", "黑体", sans-serif; font-size: 9.8pt; }
+.box p { margin: 1mm 0 0; font-size: 8.9pt; line-height: 1.5; }
+.note { border-left: 2.5pt solid #000; padding: 1.8mm 0 1.8mm 3.2mm; background: #f4f4f4; margin: 2.4mm 0 3mm; font-size: 9.2pt; }
+.kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 3mm 0 4mm; }
+.kpi div { border-top: 1.4pt solid #000; padding-top: 1.5mm; }
+.kpi b { display: block; font-family: "Times New Roman", "SimHei", "黑体", sans-serif; font-size: 19pt; line-height: 1.05; }
+.kpi span { font-size: 8.1pt; }
+.toc { list-style: none; padding: 0; margin: 2mm 0; }
+.toc li { display: flex; justify-content: space-between; border-bottom: .4pt dotted #000; padding: 1.55mm 0; font-size: 9.5pt; }
+.toc b { font-family: "Times New Roman", "SimHei", "黑体", sans-serif; }
+.flow { display: flex; align-items: stretch; gap: 1.2mm; margin: 2.5mm 0 3.5mm; }
+.flow div { flex: 1; border: .4pt solid #000; padding: 2mm 1.4mm; text-align: center; font-size: 8.1pt; line-height: 1.4; background: #fafafa; }
+.flow span { font-family: "Times New Roman", "SimHei", "黑体", sans-serif; font-weight: 700; }
+pre {
+  border: .4pt solid #000; background: #f4f4f4; color: #000;
+  padding: 2.4mm 3mm; margin: 1.5mm 0 3mm;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 7.7pt; line-height: 1.45; white-space: pre-wrap;
+}
+ul, ol { margin: 0 0 2.4mm; padding-left: 4.6mm; }
+li { margin-bottom: .7mm; }
+.cover { padding: 18mm 20mm 14mm; }
+.cover .kicker { font-family: "Times New Roman", "SimHei", "黑体", sans-serif; font-size: 8.3pt; letter-spacing: .16em; margin-bottom: 7mm; }
+.cover h1 { font-size: 38pt; line-height: 1.05; margin: 0 0 1mm; letter-spacing: .02em; }
+.cover .sub { font-family: "Times New Roman", "SimHei", "黑体", sans-serif; font-size: 22pt; font-weight: 700; margin-bottom: 2mm; }
+.cover .en { font-size: 10.6pt; margin-bottom: 5mm; }
+.cover .cover-lead { font-size: 11.2pt; line-height: 1.7; width: 150mm; margin-bottom: 5mm; }
+.cover figure { margin: 0 0 4mm; }
+.cover figure img { height: 150mm; object-fit: cover; }
+.cover .quote { font-family: "Times New Roman", "SimHei", "黑体", sans-serif; font-size: 17pt; font-weight: 700; margin: 2mm 0 1mm; }
+.cover .tags { font-size: 8.8pt; letter-spacing: .04em; }
+.cover .list { font-size: 8.8pt; margin-top: 2mm; }
+.cover .meta { display: flex; justify-content: space-between; border-top: 1pt solid #000; padding-top: 2.2mm; font-size: 8.4pt; line-height: 1.5; }
+.cover .meta b { font-family: "Times New Roman", "SimHei", "黑体", sans-serif; }
+.center { text-align: center; }
+.tight p { margin-bottom: 1.6mm; }
+</style>
+</head>
+<body>
+
+<!-- 01 封面 -->
+<section class="page cover">
+  <div class="kicker">2026 AHOLO GLOBAL 3D AI HACKATHON · PROJECT REPORT</div>
+  <h1>废物进化论</h1>
+  <div class="sub">物的觉醒</div>
+  <div class="en">Useless Evolution: The Awakening of Things</div>
+  <p class="cover-lead">四件日常物品，五个进化阶段。以 Aholo Lux3D 生成的真实模型为主体，补充形态变化与动作，做一场“物自己醒来”的 3D 展。</p>
+  <figure><img src="figs-awake/fig-cover.png" alt="水杯第五阶段：六瓣冠与三足"></figure>
+  <div class="meta">
+    <span>参赛者：<b>【姓名 / 团队】</b></span>
+    <span>技术：<b>React · Three.js · Node · Aholo Lux3D G1-Turbo</b></span>
+    <span>版本：<b>awake-1.0</b></span>
+    <span>2026-11</span>
+  </div>
+  <div class="quote">“不必有用，也可以有自己的生命。”</div>
+  <div class="tags">4 件展品　·　5 个阶段　·　20 个可回看状态　·　0 次展台运行时模型调用</div>
+  <div class="list">水杯 · 椅子 · 雨伞 · 垃圾桶　｜　原物 · 苏醒 · 移动 · 感知 · 舒展</div>
+</section>
+
+<!-- 02 摘要 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>摘要 · 目录</span></div>
+  <h2>摘要</h2>
+  <p class="lead">《废物进化论 · 物的觉醒》把水杯、椅子、雨伞、垃圾桶四件日常物品放上同一个展台。每件物品有五个阶段：原物、苏醒、移动、感知、舒展。观众不需要打怪、抽卡或计算分数，只需要按下“让它苏醒”，看它怎样一点点偏离原来的用途。</p>
+  <p>四件主体都来自 Aholo Lux3D G1-Turbo 的真实生成结果，保留原始网格、UV 与纹理；运行时只加载本地 GLB，不调用模型接口。原始 GLB 没有骨骼和动画，页面里的关节、形变与动作由本作品后制：水杯使用真实杯身加程序化三足、双触角与六瓣冠；椅子、雨伞、垃圾桶则直接在真实网格上做分区顶点形变，不新增主体部件。页脚可以下载未经动画加工的原始 GLB，报告也把这条边界写清楚。</p>
+  <div class="kpi">
+    <div><b>4</b><span>件 Lux3D 主体</span></div>
+    <div><b>5</b><span>个进化阶段 / 件</span></div>
+    <div><b>20</b><span>个可回看状态</span></div>
+    <div><b>0</b><span>展台运行时模型调用</span></div>
+  </div>
+  <ul class="toc">
+    <li><b>01　创意与问题意识</b><span>从“器官库”到“角色进化”</span></li>
+    <li><b>02　体验流程</b><span>选展品、唤醒、五段进化</span></li>
+    <li><b>03　四条进化路线</b><span>四件物品，四种性格</span></li>
+    <li><b>04　Lux3D 生产管线</b><span>提示词、任务、GLB、manifest</span></li>
+    <li><b>05　动作系统</b><span>生长曲线、步态、分区形变</span></li>
+    <li><b>06　自主进化工作台</b><span>把生成能力交给观众</span></li>
+    <li><b>07　工程与质量控制</b><span>测试、构建、安全、移动端</span></li>
+    <li><b>08　取舍与迭代</b><span>为什么不做运行时生成</span></li>
+    <li><b>09　局限与下一步</b><span>我们还没做什么</span></li>
+    <li><b>10　提交信息</b><span>运行、材料、声明</span></li>
+  </ul>
+  <div class="note">本报告中的页面截图均来自 2026-11-15 本机真实运行（`http://127.0.0.1:8787/`），不是效果图；视频片头/片尾另由阿里云通义万相生成，正文会单独标注。</div>
+  <h3 style="margin-top:2mm">四件展品速览</h3>
+  <table>
+    <tr><th style="width:12%">展品</th><th>它最后说的一句话</th><th style="width:28%">最终动作</th></tr>
+    <tr><td><b>水杯</b></td><td>它不再盛放东西。它盛开自己。</td><td>六瓣冠开合呼吸</td></tr>
+    <tr><td><b>椅子</b></td><td>它终于，能让自己放松。</td><td>四足舒展、椅背伸腰</td></tr>
+    <tr><td><b>雨伞</b></td><td>这一次，它为自己盛开。</td><td>浮游、感风、伞面舒展</td></tr>
+    <tr><td><b>垃圾桶</b></td><td>它也可以，主动迎接世界。</td><td>铰链开合、全身舒展</td></tr>
+  </table>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>01</span></div>
+</section>
+
+<!-- 03 创意 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>01 创意与问题意识</span></div>
+  <h2>01　创意与问题意识</h2>
+  <p class="lead">一只杯子被造出来，是为了盛水。如果它自己长出腿、触角和冠瓣，它还是杯子吗？我们想做的不是“更厉害的杯子”，而是让物在功能之外，长出一点自己的性格。</p>
+  <h3>1.1 从“器官库”到“角色进化”</h3>
+  <p>上一版《器官库》把 32 个 Lux3D 器官做成可自由拼装的系统：4 个基础物体、最多 4 个器官、跨物种融合、每 4.8 秒自主变异。它证明了“赛前建模、运行时拼装”的链路，但玩家面对的是组合与分数，物本身没有经历。</p>
+  <p>这一版把“组合”收起来，改成四条写好的进化路线。每件物品只有五个阶段，每个阶段只增加一种能力：先呼吸，再移动，再感知，最后舒展。观众不需要理解规则，也能看懂它正在变成什么。旧版的 32 个器官资产仍保留在仓库中作为归档，但不再进入新展台。</p>
+  <h3>1.2 三个设计判断</h3>
+  <div class="two">
+    <div class="box"><b>物先于功能</b><p>先让观众看见它“活着”，再让人意识到它原本是被使用的。标题写“它还只是，一只杯子”，而不是“杯子能做什么”。</p></div>
+    <div class="box"><b>动作就是性格</b><p>杯子用三足交替落地，椅子用原有椅腿迈步，雨伞用伞沿感风，垃圾桶用桶盖开合。动作必须从原物的结构里长出来，不能四件共用一套动画。</p></div>
+  </div>
+  <div class="two" style="margin-top:2.5mm">
+    <div class="box"><b>透明比炫技重要</b><p>原始 GLB 不带动画，页面明确写“主体 Lux3D · 后制动画”，并提供原始模型下载。哪些是生成的、哪些是后制的，不混在一起说。</p></div>
+    <div class="box"><b>不做胜负</b><p>没有血量、卡牌、分数和失败。唯一的“目标”是看完它五次变化；这使作品更接近展陈，而不是一局游戏。</p></div>
+  </div>
+  <figure><img src="figs-awake/fig-old-new.png" alt="旧版 32 器官与新版四展品对比"><figcaption>图 1　关键迭代对比：左为旧版《器官库》的 32 器官拼装界面，右为新版《物的觉醒》的水杯第五阶段。两版都使用 Lux3D 资产，但新版从“组合系统”转为“角色叙事”。</figcaption></figure>
+  <h3>1.3 与“单次生成”的区别</h3>
+  <p>单次文生 3D 是一次性网格，提示词即全部，每次生成都要等 2–6 分钟；本作品是四件展品 × 五阶段，模型在赛前生成、运行时零调用，可回看、可重播、可暂停。前者像抽一张卡，后者像看一场展。</p>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>02</span></div>
+</section>
+
+<!-- 04 体验流程 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>02 体验流程</span></div>
+  <h2>02　体验流程</h2>
+  <p>一次完整体验约 3–6 分钟。首次进入默认是水杯；顶部四个标签切换物品，每件物品独立保存进度。底部时间轴可以直接回看任意阶段；回看会从当前形态平滑过渡到目标阶段，不是瞬间切换。</p>
+  <div class="flow">
+    <div><span>1</span><br>选展品<br><span class="mono">cup / chair / umbrella / bin</span></div>
+    <div><span>2</span><br>让它苏醒<br><span class="mono">stage 01 → 02</span></div>
+    <div><span>3</span><br>继续进化<br><span class="mono">stage 03 / 04 / 05</span></div>
+    <div><span>4</span><br>自动动作<br><span class="mono">7.5 s demo</span></div>
+    <div><span>5</span><br>回看 / 重播<br><span class="mono">pause / replay</span></div>
+    <div><span>6</span><br>自己创作<br><span class="mono">?create=1</span></div>
+  </div>
+  <figure class="fig-main"><img src="figs-awake/cup-ui-1.png" alt="水杯第一阶段主界面"><figcaption>图 2　主界面（真实运行截图）：左侧是当前阶段的标题与描述，中间是 3D 展台，右侧是阶段状态，底部是五个阶段的时间轴与“让它苏醒”按钮。</figcaption></figure>
+  <h3>2.1 交互细节</h3>
+  <ul>
+    <li><b>拖拽旋转、滚轮缩放</b>：OrbitControls 限制俯仰与距离，避免转到展台下面或穿模。</li>
+    <li><b>暂停与重播</b>：暂停是真正的全局冻结（生长、呼吸、步态、背景都停），不是只停 CSS 动画；重播会从当前阶段重新演示动作。</li>
+    <li><b>自动演示</b>：每次进化完成后自动进入 7.5 秒动作演示，再回到自由观察；切换物品会取消上一件尚未结束的播放。</li>
+    <li><b>进度保存</b>：`localStorage` 按 `living-stage-<id>` 保存四件物品各自的阶段；刷新后恢复，互不影响。</li>
+    <li><b>从头开始</b>：弹出确认对话框，确认后回到原物；对话框支持 Esc 关闭与 Tab 焦点循环。</li>
+  </ul>
+  <p class="small">移动端在 390px 与 320px 宽度下重新排布：标题、展台、控制台、时间轴纵向排列，主要按钮保持可点；页面没有横向滚动。浏览器检查脚本覆盖了这些宽度。</p>
+  <p class="small">观看提示：先看原物，再逐段唤醒；每段结束会自动演示，也可以随时暂停、回看或重播。</p>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>03</span></div>
+</section>
+
+<!-- 05 四条路线 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>03 四条进化路线</span></div>
+  <h2>03　四条进化路线</h2>
+  <p>四件物品共用“原物 → 苏醒 → 移动 → 感知 → 舒展”的五段语法，但每一段的能力都从原物结构里长出来。下表是四条路线的完整设计。</p>
+  <table>
+    <tr><th style="width:12%">展品</th><th style="width:34%">五个阶段</th><th style="width:30%">动作</th><th>最终形态</th></tr>
+    <tr><td><b>水杯</b><br><span class="small">001</span></td><td>原物 / 苏醒 / 行走 / 感知 / 绽放</td><td>三足交替落地、双触角探查、六瓣冠开合</td><td>杯身保留，杯口长出六片陶瓷冠瓣，两侧长出双触角</td></tr>
+    <tr><td><b>椅子</b><br><span class="small">002</span></td><td>原物 / 苏醒 / 迈步 / 探身 / 舒展</td><td>原有椅腿交替迈步、椅背转向、软垫呼吸</td><td>四足撑开，椅背向后舒展，仍是一把可辨认的木椅</td></tr>
+    <tr><td><b>雨伞</b><br><span class="small">003</span></td><td>原物 / 苏醒 / 浮游 / 感风 / 舒展</td><td>伞面呼吸、整伞离地、伞沿波动、伞柄平衡</td><td>伞面舒展成更宽的轮廓，悬停在展台上方</td></tr>
+    <tr><td><b>垃圾桶</b><br><span class="small">004</span></td><td>原物 / 苏醒 / 挪动 / 感知 / 开合</td><td>桶底左右承重、桶盖铰链开合、桶身收放</td><td>桶盖打开，桶身舒展，像在主动迎接外界</td></tr>
+  </table>
+  <figure><img src="figs-awake/fig-stage-strip.png" alt="水杯五个阶段"><figcaption>图 3　水杯的五个阶段（真实运行截图）：01 原物、02 苏醒、03 行走、04 感知、05 绽放。每一阶段只增加一种可见结构，观众能顺着时间轴读出一条完整的生长线。</figcaption></figure>
+  <h3>3.1 共同语法与差异</h3>
+  <div class="two">
+    <div class="box"><b>共同语法</b><p>先“醒”（呼吸、轻微倾斜），再“动”（位移或抬升），再“感”（转向、倾听、感风），最后“开”（冠瓣、椅背、伞面、桶盖）。五个阶段对应五种逐渐增强的自主性。</p></div>
+    <div class="box"><b>差异来自结构</b><p>杯子没有腿，所以用三足；椅子本来有四条腿，所以让原腿走路；雨伞没有脚，所以用浮游代替行走；垃圾桶有盖，所以把“开合”作为情绪表达。</p></div>
+  </div>
+  <h3>3.2 五个阶段各自新增什么</h3>
+  <table>
+    <tr><th style="width:12%">阶段</th><th style="width:30%">新增能力</th><th>观众看到的变化</th></tr>
+    <tr><td>01 原物</td><td>无</td><td>熟悉的轮廓、材质与展台；先绕着它看</td></tr>
+    <tr><td>02 苏醒</td><td>呼吸、轻微倾斜</td><td>杯壁/软垫/伞面/桶壁开始起伏，像刚醒来</td></tr>
+    <tr><td>03 移动</td><td>腿、浮游或承重挪动</td><td>离开原位：三足落地、椅腿迈步、伞离地、桶挪动</td></tr>
+    <tr><td>04 感知</td><td>触角、转身、感风</td><td>停下、侧身、转向；它开始对周围有反应</td></tr>
+    <tr><td>05 舒展</td><td>冠瓣、椅背、伞面、桶盖</td><td>打开身体，完成一次“为自己”的动作</td></tr>
+  </table>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>04</span></div>
+</section>
+
+<!-- 06 四件展品 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>03 四条进化路线</span></div>
+  <h2>四件展品，四种性格</h2>
+  <figure><img src="figs-awake/fig-four.png" alt="四件展品第五阶段"><figcaption>图 4　四件展品的第五阶段（真实运行截图）：水杯绽放、椅子舒展、雨伞浮游、垃圾桶开合。四件都保留原物的材质与轮廓，变化发生在结构关系里，而不是换一个模型。</figcaption></figure>
+  <div class="two">
+    <div class="box"><b>水杯 · 陶瓷生命</b><p>杯身是真实的 Lux3D 白瓷杯。三足、双触角、六瓣冠是后制程序化结构，用同一套白瓷材质与展台灯光贴合。它的动作最“像虫”：三足交替，触角先探路，冠瓣最后打开。</p></div>
+    <div class="box"><b>椅子 · 林地漫游者</b><p>不新增任何部件，直接对真实木椅做分区顶点形变：四条腿按对角相位摆动，椅背向后仰，软垫跟着呼吸。它始终是一把椅子，只是第一次为自己迈步。</p></div>
+  </div>
+  <div class="two" style="margin-top:2.5mm">
+    <div class="box"><b>雨伞 · 空中绽放</b><p>伞面、伞骨、伞柄都在真实网格上形变。伞面像肺一样收放，整把伞离地，伞沿逐片翻起；它没有脚，所以用“浮游”完成移动。</p></div>
+    <div class="box"><b>垃圾桶 · 安静的守门人</b><p>桶盖被识别为独立分区，沿铰链旋转；桶身左右承重挪动，像笨拙地走路。它用“开合”表达情绪：先试探，再打开，最后轻轻合拢。</p></div>
+  </div>
+  <div class="note">四件展品都不是“换皮”：水杯换了真实 Lux3D 杯身，椅子/雨伞/垃圾桶保留原始拓扑与纹理，只做顶点级形变。页脚“下载原始 GLB”可以对照未加工的模型。</div>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>05</span></div>
+</section>
+
+<!-- 07 Lux3D 管线 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>04 Lux3D 生产管线</span></div>
+  <h2>04　从提示词到展台：Lux3D 生产管线</h2>
+  <p>Lux3D 在本项目里不是运行时魔法，而是“资产生产线”：赛前把四件主体生成好、压缩好、登记好；运行时只读本地文件。这样展台打开就能看，不用等 2–6 分钟的生成。</p>
+  <div class="flow">
+    <div><span>1</span><br>写提示词<br><span class="mono">object + material + geometry</span></div>
+    <div><span>2</span><br>创建任务<br><span class="mono">text-to-3d / G1-Turbo</span></div>
+    <div><span>3</span><br>轮询下载<br><span class="mono">status 0/1/3/4/6</span></div>
+    <div><span>4</span><br>压缩优化<br><span class="mono">gltf-transform</span></div>
+    <div><span>5</span><br>登记 manifest<br><span class="mono">taskId / file / bytes</span></div>
+    <div><span>6</span><br>展台加载<br><span class="mono">local GLB only</span></div>
+  </div>
+  <table>
+    <tr><th style="width:11%">主体</th><th style="width:18%">Lux3D 任务</th><th>生成时间（UTC）</th><th style="width:15%">原始大小</th><th style="width:14%">优化后</th><th style="width:11%">保留率</th></tr>
+    <tr><td>水杯</td><td class="mono">4778822</td><td>2026-11-06 12:00</td><td class="num">10.0 MB</td><td class="num">0.81 MB</td><td class="num">8.1%</td></tr>
+    <tr><td>椅子</td><td class="mono">4779829</td><td>2026-11-06 12:11</td><td class="num">10.7 MB</td><td class="num">0.97 MB</td><td class="num">9.0%</td></tr>
+    <tr><td>雨伞</td><td class="mono">4780091</td><td>2026-11-06 12:14</td><td class="num">13.4 MB</td><td class="num">1.23 MB</td><td class="num">9.1%</td></tr>
+    <tr><td>垃圾桶</td><td class="mono">4780372</td><td>2026-11-06 12:18</td><td class="num">15.2 MB</td><td class="num">1.47 MB</td><td class="num">9.7%</td></tr>
+  </table>
+  <p class="small">四件主体原始合计约 49.3 MB，优化后约 4.5 MB，保留率约 9.1%，体积减少约 90.9%。优化使用 `gltf-transform optimize --texture-compress webp --texture-size 1024 --simplify false`，不简化拓扑，保留原始 UV 与纹理引用。</p>
+  <h3>4.1 资产进入展台前做了什么</h3>
+  <ul>
+    <li><b>包围盒归一化</b>：按展品配置缩放到统一高度（水杯 1.02、椅子 1.25、雨伞 1.40、垃圾桶 1.20），底部落在 y=0，水平居中。</li>
+    <li><b>不改缓存</b>：克隆 geometry 与 material 后再做矩阵变换，避免修改 `useGLTF` 的共享缓存；卸载时释放克隆资源。</li>
+    <li><b>保留纹理</b>：不重烘焙、不替换材质，只调整 `envMapIntensity`，让原始白瓷、木纹、伞布、金属在展台灯光下可读。</li>
+    <li><b>原始模型可下载</b>：页脚提供未加工 GLB，评审可以对照“生成结果”和“后制动画”。</li>
+  </ul>
+  <h3>4.2 提示词结构</h3>
+  <pre>Object: one {object}, still recognizable as a {object}.
+Inherited: {shape}, {material}.
+Geometry: single connected object, full object visible,
+centered on a plain light grey studio background,
+soft studio lighting, no text, no logo, no people.
+Style: coherent premium industrial 3D product design,
+{material}, game-ready asset.</pre>
+  <p class="small">把实际提示词归纳成四段：`Object` 与 `Inherited` 锁住原物特征，`Geometry` 约束背景与完整性，`Style` 统一四件展品的材质语言。四件主体分别替换 `{object}` 与 `{material}`：白瓷杯、浅色橡木椅、浅蓝伞布、拉丝金属垃圾桶。</p>
+  <div class="note">运行时（`/` 展台）的 Lux3D 调用次数为 <b>0</b>；只有可选的 `?create=1` 工作台会在用户主动提交时调用服务端 Aholo API，且密钥不进入浏览器。</div>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>06</span></div>
+</section>
+
+<!-- 08 动作系统 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>05 动作系统</span></div>
+  <h2>05　动作系统：让静态网格自己动</h2>
+  <p>Lux3D 输出的是静态网格，没有骨骼、没有动画片段。我们没有假装它有，而是把“后制”拆成两层：一层是全局生长曲线，一层是每件物品自己的形变规则。</p>
+  <h3>5.1 五段生长曲线</h3>
+  <p>所有展品共享 `growthAt(age)`：`wake`、`legs`、`feelers`、`crown` 四条曲线分别在阶段 0–3 之后逐渐打开。阶段不是五张静态图，而是连续 age 上的插值；所以暂停时能停在任意中间态。</p>
+  <pre>growthAt(age) = {
+  wake:    smooth(age),
+  legs:    smooth(age - 1),
+  feelers: smooth(age - 2),
+  crown:   smooth(age - 3)
+}</pre>
+  <h3>5.2 四种后制方式</h3>
+  <table>
+    <tr><th style="width:12%">展品</th><th style="width:26%">后制方式</th><th>可见动作</th><th style="width:17%">是否新增主体网格</th></tr>
+    <tr><td>水杯</td><td>真实杯身 + 程序化三足、双触角、六瓣冠</td><td>三足交替落地、触角摆动、冠瓣开合、杯身呼吸</td><td>是（附件结构）</td></tr>
+    <tr><td>椅子</td><td>真实网格上的分区顶点形变</td><td>椅腿对角摆动、椅背后仰、软垫呼吸</td><td>否</td></tr>
+    <tr><td>雨伞</td><td>真实网格上的分区顶点形变</td><td>伞面收放、整伞离地、伞沿波动、伞柄平衡</td><td>否</td></tr>
+    <tr><td>垃圾桶</td><td>真实网格上的铰链分区形变</td><td>桶盖开合、桶身左右承重、桶壁呼吸</td><td>否</td></tr>
+  </table>
+  <h3>5.3 杯子的三足步态</h3>
+  <p>杯子没有现成的腿，所以三足是后制的。每条腿是两段连杆：髋点固定在杯身底部，足端按 `footAt(t, i)` 沿身体路径落点，膝盖用两段 IK 求交。三足相位相差 120°，任意时刻至少两只脚在地面，形成稳定的三角支撑。</p>
+  <p>`scripts/living-check.ts` 验证了连续生长、三足接地、支撑脚不滑动、两段连杆长度精确；浏览器脚本还验证了五阶段、自动动作、真实暂停、重播、反向回看、重置与 390/320px 布局。</p>
+  <h3>5.4 时钟、暂停与阴影</h3>
+  <table>
+    <tr><th style="width:14%">模式</th><th style="width:26%">触发</th><th>行为</th></tr>
+    <tr><td>grow</td><td>点击“让它苏醒 / 继续进化”</td><td>age 从当前阶段插值到目标阶段，显示生长进度；结束后自动进入 demo</td></tr>
+    <tr><td>demo</td><td>生长完成，或点击“再看它动起来”</td><td>7.5 秒完整动作：步态、开合、浮游、触角探查；结束后回到 idle</td></tr>
+    <tr><td>idle</td><td>默认 / demo 结束</td><td>自由观察；拖拽旋转、滚轮缩放、点击模型重播</td></tr>
+  </table>
+  <p class="small">所有动作由 `clock.time`、`clock.travel`、`clock.demo` 驱动。暂停时 `clock.paused` 直接跳过 `useFrame` 更新，所以呼吸、步态、背景与阴影一起停住；这不是 CSS 动画的暂停。阴影使用自定义 `MeshDepthMaterial`，并同步顶点形变，否则形变后阴影会留在原地。</p>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>07</span></div>
+</section>
+
+<!-- 09 工作台 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>06 自主进化工作台</span></div>
+  <h2>06　自主进化工作台：把生成能力交给观众</h2>
+  <p>四件预制展品是“作品”，`?create=1` 是“工具”。观众可以输入自己的物品描述，让服务端调用 Aholo Lux3D 生成第一代，再沿着任意已完成的一代继续变异，形成一棵自己的形态树。</p>
+  <figure><img src="figs-awake/workshop-ui.png" alt="自主进化工作台"><figcaption>图 5　自主进化工作台（真实运行截图）：左侧输入作品名与第一代描述，中间预览 GLB，右侧记录每一代的提示词、父节点、任务编号与状态。</figcaption></figure>
+  <h3>6.1 工作流</h3>
+  <ol>
+    <li>输入作品名与第一代物品描述；提交前可以展开查看完整提示词。</li>
+    <li>服务端创建 Aholo 任务，前端轮询状态；完成后下载 GLB，支持旋转观察与“静止 / 轻呼吸 / 悬浮”三种展示动作。</li>
+    <li>点击任意已完成的一代，可以从那里生成另一条分支；每代独立保存提示词、父节点、任务编号和模型地址。</li>
+    <li>刷新页面会恢复已有任务；停止本页等待不会取消 Aholo 任务，可以稍后继续查询。</li>
+    <li>相同提示词复用已有任务/模型，避免无意重复提交；记录可导出 JSON。</li>
+  </ol>
+  <h3>6.2 安全与边界</h3>
+  <table>
+    <tr><th style="width:26%">问题</th><th>处理</th></tr>
+    <tr><td>API Key 泄露</td><td>只放在服务端 `.env`，浏览器请求 `/api/lux3d/generate`，响应不返回密钥。</td></tr>
+    <tr><td>重复提交</td><td>按提示词哈希去重；同一提示词已有任务/模型时直接复用。</td></tr>
+    <tr><td>刷新丢失</td><td>工作台状态存 `localStorage`；任务元数据存模型目录 `.jobs.json`，服务重启可恢复。</td></tr>
+    <tr><td>生成差异</td><td>明确提示“每一代是重新生成，不是对上一代网格做精确编辑”，外形继承可能有差异。</td></tr>
+  </table>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>08</span></div>
+</section>
+
+<!-- 10 工程 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>07 工程与质量控制</span></div>
+  <h2>07　工程与质量控制</h2>
+  <p>这一版的核心风险不是“画面不够炫”，而是“看起来在动，其实只是 CSS 动画”。所以测试重点放在：真实 GLB 是否被加载、动作是否由时钟驱动、暂停是否真的冻结、四件进度是否独立、移动端是否可用。</p>
+  <table>
+    <tr><th style="width:30%">检查</th><th style="width:24%">命令</th><th>结果</th></tr>
+    <tr><td>杯子步态与生长</td><td class="mono">npm run test:living</td><td>连续生长、三足接地、支撑脚不滑动、两段连杆长度精确</td></tr>
+    <tr><td>四件资产与阶段</td><td class="mono">npm run test:exhibits</td><td>四个真实 Lux3D 资产、每件五阶段、独立进度、纹理/拓扑保留</td></tr>
+    <tr><td>浏览器主流程</td><td class="mono">npm run test:living-ui</td><td>五阶段、自动动作、真实暂停、重播、反向回看、重置、390/320px</td></tr>
+    <tr><td>四件浏览器检查</td><td class="mono">npm run test:exhibits-ui</td><td>20 个阶段、四个 GLB 响应、真实运动、来源说明、切换取消、移动端</td></tr>
+    <tr><td>工作台逻辑</td><td class="mono">npm run test:workshop</td><td>提示词继承、真实分支、状态恢复、并发去重、轮询与缓存</td></tr>
+    <tr><td>工作台浏览器</td><td class="mono">npm run test:workshop-ui</td><td>异步等待、刷新续等、失败重试、分支、停止/恢复、导出、移动端</td></tr>
+  </table>
+  <h3>7.1 构建与运行</h3>
+  <table>
+    <tr><th style="width:24%">项目</th><th>结果</th></tr>
+    <tr><td>构建</td><td>`tsc -b && vite build` 通过；JS 约 1.08 MB（gzip 306 KB），CSS 约 39 KB</td></tr>
+    <tr><td>运行</td><td>单端口 8787 同时提供前端与 API；Windows 双击 `启动Demo.bat`，`停止Demo.bat` 释放端口</td></tr>
+    <tr><td>入口</td><td>`/` 四展台；`?object=cup|chair|umbrella|bin` 直达；`?create=1` 工作台</td></tr>
+    <tr><td>移动端</td><td>390px / 320px 无横向滚动，主要按钮可点；3D 画布保持可旋转</td></tr>
+  </table>
+  <h3>7.2 安全与可复核</h3>
+  <ul>
+    <li>`AHOLO_API_KEY` 只在服务端 `.env`；浏览器 bundle、报告、PPT、视频、源代码 zip 均不包含密钥。</li>
+    <li>`public/models/manifest.json` 保留四个主体的 taskId、原始大小、优化后大小与生成时间，评审可复核。</li>
+    <li>页脚提供原始 GLB 下载；源代码 zip 不含 `node_modules`、`.env` 与运行日志。</li>
+    <li>所有页面截图来自真实运行；视频中的真实操作段落为 Playwright 录制，未用 AI 重绘。</li>
+  </ul>
+  <h3>7.3 复现</h3>
+  <pre>npm install
+npm run build
+npm start
+# 打开 http://localhost:8787/
+# 四件展品：/  ｜ 工作台：/?create=1
+# 单件直达：/?object=cup|chair|umbrella|bin</pre>
+  <p class="small">Windows 也可以直接双击 `启动Demo.bat`：脚本会检查依赖、构建、启动 8787 并打开浏览器；`停止Demo.bat` 释放端口。首次启动若没有 `node_modules` 会自动安装。</p>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>09</span></div>
+</section>
+
+<!-- 11 取舍 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>08 取舍与迭代</span></div>
+  <h2>08　取舍与迭代</h2>
+  <h3>8.1 为什么不让 Lux3D 在运行时生成</h3>
+  <p>Lux3D 单次生成约 2–6 分钟。展台的核心体验是“点一下，马上看到它变”，等待会打断观看。我们把生成放到赛前，运行时只加载本地 GLB；生成能力则放进可选的工作台，让愿意等待的观众自己用。</p>
+  <h3>8.2 为什么不用骨骼动画</h3>
+  <p>Lux3D 的 GLB 没有骨架，也没有分离的部件。强行绑定骨骼会破坏原始拓扑，且四件物品的结构差异很大。我们选择两条更可控的路：水杯在真实杯身外挂程序化附件；椅子、雨伞、垃圾桶直接在顶点着色器里做分区形变。前者能长出全新的腿和冠，后者能保证“还是原来的椅子/伞/桶”。</p>
+  <h3>8.3 关键迭代</h3>
+  <table>
+    <tr><th style="width:18%">时间</th><th style="width:30%">版本</th><th>变化</th></tr>
+    <tr><td>11-06</td><td>四件 Lux3D 主体</td><td>生成水杯、椅子、雨伞、垃圾桶，保留 taskId 与原始 GLB</td></tr>
+    <tr><td>11-10</td><td>旧版《器官库》</td><td>32 个器官、4 个基础、自由拼装、融合、自主变异；作为拓展保留</td></tr>
+    <tr><td>11-13</td><td>新版《物的觉醒》</td><td>收敛为四件展品 × 五阶段，加入真实动作、独立进度、工作台</td></tr>
+    <tr><td>11-14</td><td>演示视频</td><td>真实运行画面 + 阿里云通义万相片头/片尾，62 秒</td></tr>
+    <tr><td>11-15</td><td>报告与 QA</td><td>真实页面截图、测试复跑、构建与提交材料核对</td></tr>
+  </table>
+  <h3>8.4 关键资产对比</h3>
+  <div class="two">
+    <div class="box"><b>杯子：从程序化样例到真实 Lux3D 杯身</b><p>早期杯子是程序化几何，动作容易但不像真实产品。这一版换成真实白瓷杯 GLB，保留杯身与把手，再把三足、触角、冠瓣作为后制附件贴上去。</p></div>
+    <div class="box"><b>从 32 器官到 4 角色</b><p>旧版自由度高，但观众不知道“下一步该看什么”。新版用五段时间轴把注意力收束到“它正在变成什么”，牺牲组合数量，换来叙事完整度。</p></div>
+  </div>
+  <div class="note">取舍的原则：<b>先保证“真实模型 + 真实动作 + 可复核”，再谈组合数量。</b> 这也是我们把旧版保留为拓展、而不是继续堆功能的原因。</div>
+  <h3>8.5 下一步优先级</h3>
+  <table>
+    <tr><th style="width:10%">级别</th><th style="width:30%">方向</th><th>理由</th></tr>
+    <tr><td>P0</td><td>带分离部件的“可动资产”</td><td>减少水杯三足/触角/冠瓣的后制量，让更多物品能直接长出关节</td></tr>
+    <tr><td>P1</td><td>分享链接与现场投影</td><td>让观众把自己的进化树带到现场，放大“物自己醒来”的传播点</td></tr>
+    <tr><td>P2</td><td>接触约束与地面检测</td><td>让步态对展台边缘、障碍物有反应，而不只是沿预设路径移动</td></tr>
+  </table>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>10</span></div>
+</section>
+
+<!-- 12 局限与提交 -->
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 物的觉醒</span><span>09 局限 · 10 提交信息</span></div>
+  <h2>09　局限与下一步</h2>
+  <table>
+    <tr><th style="width:28%">现在的边界</th><th>下一步</th></tr>
+    <tr><td>形变是作者写好的分区规则，不是模型自己学会的动作</td><td>尝试自动骨骼/关节识别，让新生成的物品也能获得可动结构</td></tr>
+    <tr><td>水杯的三足、触角、冠瓣是后制程序化网格，不是 Lux3D 生成</td><td>探索用 Lux3D 直接生成带分离部件的“可动资产”，减少后制</td></tr>
+    <tr><td>没有物理碰撞与真实步态规划，脚会沿预设路径移动</td><td>加入简单接触约束与地面检测，让步态对展台边缘有反应</td></tr>
+    <tr><td>工作台每一代是重新生成，外形继承不保证连续</td><td>研究参考图/首尾帧约束，让分支之间的形态更连贯</td></tr>
+    <tr><td>目前是单机展陈，没有多人同时观看与投票</td><td>增加分享链接与现场投影模式，让观众把自己的进化树投到展台上</td></tr>
+  </table>
+  <h2 style="margin-top:5mm">10　提交信息</h2>
+  <table>
+    <tr><th style="width:22%">项目</th><th>内容</th></tr>
+    <tr><td>Demo</td><td>【部署后填写，保留至 2026-12-31】；本地 `http://127.0.0.1:8787/`</td></tr>
+    <tr><td>运行</td><td>Windows 双击 `启动Demo.bat`（构建 → 启动 8787 → 打开浏览器）；`停止Demo.bat` 释放端口</td></tr>
+    <tr><td>主入口</td><td>`/` 四展台；`?object=cup|chair|umbrella|bin`；`?create=1` 自主进化工作台</td></tr>
+    <tr><td>材料</td><td>本报告、路演 PPT、62 秒演示视频、提交文案、源代码 zip</td></tr>
+    <tr><td>模型</td><td>Aholo Lux3D G1-Turbo；四个 taskId 见 04 节；原始 GLB 可在页脚下载</td></tr>
+    <tr><td>视频</td><td>真实运行画面 + 阿里云通义万相 `wan3.0-video` 片头/片尾；AI 片段不替代真实操作</td></tr>
+  </table>
+  <h3>声明</h3>
+  <p class="small">四件主体模型由 Aholo Lux3D 生成；关节、形态变化与动作由本作品后制，原始模型不自带动画。演示视频中的片头/片尾由阿里云通义万相生成，核心操作段落为本机真实运行录屏。报告中的页面截图均为 2026-11-15 真实运行截取，未使用效果图冒充运行画面。API Key 仅保存在服务端，未进入任何提交材料。</p>
+  <div class="two" style="margin-top:3mm">
+    <div class="box"><b>参赛者</b><p>【姓名 / 团队】<br>【分工：概念 / 3D / 前端 / 视频】</p></div>
+    <div class="box"><b>联系</b><p>【邮箱 / 社群昵称】<br>小红书：【发布后填写，带 #Aholo黑客松】</p></div>
+  </div>
+  <h3>提交前检查</h3>
+  <ul class="small">
+    <li>报告封面、页脚、团队信息替换占位符；Demo 链接与小红书链接补齐。</li>
+    <li>视频能在普通播放器打开，字幕正常；真实运行画面未被 AI 片段替代。</li>
+    <li>无痕窗口打开公网 Demo，四件展品与 20 个阶段均可加载，无 JS/WebGL 报错。</li>
+    <li>确认 API Key 不在报告、PPT、视频、源代码 zip 的任何文本中。</li>
+  </ul>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>11</span></div>
+</section>
+
+</body>
+</html>

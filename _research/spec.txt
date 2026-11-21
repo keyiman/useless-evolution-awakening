@@ -1,0 +1,480 @@
+﻿================================================================================
+/lux3d/v1/generate/text-to-3d/task/create
+{
+ "post": {
+  "tags": [
+   "Lux3D"
+  ],
+  "summary": "创建文生 3D 任务",
+  "description": "根据文本和一张可选参考图片创建异步 3D 生成任务，可选择 G1 或 G1-Turbo。省略 version 时使用默认版本。请求成功后返回任务 ID（taskid），可通过任务查询接口获取状态和结果。\n",
+  "operationId": "createTextTo3dTask",
+  "requestBody": {
+   "description": "文生 3D 任务请求体。",
+   "content": {
+    "application/json": {
+     "schema": {
+      "$ref": "#/components/schemas/lux3d_TextTo3dRequest"
+     },
+     "examples": {
+      "textOnlyG1": {
+       "summary": "纯文本生成（推荐：G1）",
+       "value": {
+        "prompt": "生成一个高质量的3D木椅模型",
+        "style": "photorealistic",
+        "version": "G1",
+        "faceCount": 300000,
+        "outputFormat": [
+         "zip",
+         "glb"
+        ]
+       }
+      },
+      "textWithImage": {
+       "summary": "文本+参考图生成（推荐：G1）",
+       "value": {
+        "prompt": "生成一个高质量的3D木椅模型",
+        "style": "photorealistic",
+        "img": "https://qhstaticssl.kujiale.com/image/jpeg/1784775590613/image_to_3d_model.jpg",
+        "version": "G1"
+       }
+      },
+      "textG1ZipGlb": {
+       "summary": "G1 文生 3D（ZIP + GLB）",
+       "value": {
+        "prompt": "生成一把现代木质餐椅",
+        "style": "photorealistic",
+        "version": "G1",
+        "outputFormat": [
+         "zip",
+         "glb"
+        ],
+        "faceCount": 300000
+       }
+      },
+      "textG1TurboPly": {
+       "summary": "G1-Turbo 文生 3D（仅 PLY）",
+       "value": {
+        "prompt": "生成一把现代木质餐椅",
+        "style": "photorealistic",
+        "version": "G1-Turbo",
+        "outputFormat": [
+         "ply"
+        ]
+       }
+      }
+     }
+    }
+   },
+   "required": true
+  },
+  "responses": {
+   "200": {
+    "description": "成功时返回任务ID。",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/lux3d_TaskCreateResponse"
+      },
+      "examples": {
+       "success": {
+        "summary": "任务创建成功",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": 1256173
+        }
+       },
+       "concurrencyLimit": {
+        "summary": "生成任务并发已达上限",
+        "value": {
+         "f": null,
+         "c": "GENERATION_CONCURRENCY_LIMIT_EXCEEDED",
+         "m": "当前已有进行中的生成任务，请等待完成后再试",
+         "d": null
+        }
+       }
+      }
+     }
+    }
+   },
+   "401": {
+    "description": "未携带或无效的 Authorization，鉴权失败",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/lux3d_TaskCreateResponse"
+      }
+     }
+    }
+   },
+   "500": {
+    "description": "服务端内部错误",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/lux3d_TaskCreateResponse"
+      }
+     }
+    }
+   }
+  },
+  "security": [
+   {
+    "AuthorizationHeader": []
+   }
+  ],
+  "x-scalar-order": 4,
+  "x-codeSamples": [
+   {
+    "lang": "TypeScript",
+    "label": "Aholo SDK（TypeScript）",
+    "source": "import { createLux3dClient } from '@manycore/aholo-sdk-lux3d';\n\nconst lux3d = createLux3dClient({ region: 'cn' });\nconst taskId = await lux3d.textTo3d.create({\n  prompt: '带雕花腿的木椅',\n  version: 'G1',\n});\nconst result = await lux3d.tasks.waitFor(taskId);"
+   },
+   {
+    "lang": "Java",
+    "label": "Aholo SDK（Java）",
+    "source": "import com.manycoreapis.sdk.core.AholoClientConfig;\nimport java.nio.file.Paths;\nimport com.manycoreapis.sdk.lux3d.Lux3dClient;\nimport com.manycoreapis.sdk.lux3d.model.ImageToFourViewCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.MultimodalToImageCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.ImgTo3dCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.TextTo3dCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.MaterialTransferCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.ArticulationAnimationCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.HumanoidAnimationRetargetCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.HumanoidAutoRigCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.MultiFormatExportCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.PartSplitCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.TaskListParams;\nimport com.manycoreapis.sdk.lux3d.model.TaskPagedList;\nimport com.manycoreapis.sdk.lux3d.model.TaskResult;\n\nLux3dClient lux3d = Lux3dClient.create(AholoClientConfig.ofRegion(\"cn\"));\nlong taskId = lux3d.textTo3d().create(\n    TextTo3dCreateParams.builder()\n        .prompt(\"带雕花腿的木椅\")\n        .version(\"G1\")\n        .build());\nTaskResult result = lux3d.tasks().waitFor(taskId);"
+   },
+   {
+    "lang": "Python",
+    "label": "Aholo SDK（Python）",
+    "source": "from manycore.aholo_sdk_lux3d import create_lux3d_client\n\nlux3d = create_lux3d_client(region='cn')\ntask_id = lux3d.text_to_3d.create(prompt='带雕花腿的木椅', version='G1')\nresult = lux3d.tasks.wait_for(task_id)"
+   }
+  ]
+ }
+}
+================================================================================
+/lux3d/v1/generate/task/get
+{
+ "get": {
+  "tags": [
+   "Lux3D"
+  ],
+  "summary": "查询生成任务",
+  "description": "根据任务 ID 查询任务状态和结果，仅支持查询当前认证账号创建的任务。结果 URL 有效期为 2 小时。\n\n`c=\"0\"` 表示查询成功，任务是否完成由 `d.status` 判断：0-初始化，1-运行中，3-成功，4-失败，6-已取消。状态为 0 或 1 时继续查询，任务完成后从 `d.outputs` 读取结果；运行中的任务也可能返回部分已生成结果。\n\n不同任务的结果格式如下。表中的 URL 或 JSON 字符串均位于输出项的 `content` 字段。\n\n| 任务类型 | 结果格式 |\n| --- | --- |\n| 多模态单图生成 | 一个结果图片 URL。 |\n| 多模态四视图 | 包含四张图片 URL 的 JSON 数组字符串，顺序为 FRONT_THREE_QUARTER、OPPOSITE_THREE_QUARTER、SIDE、BACK。 |\n| G1 图生 / 文生 3D | 按 ZIP、GLB 顺序返回文件 URL；请求 PLY 时额外返回 PLY。 |\n| G1-Turbo 图生 / 文生 3D | 返回指定格式的文件 URL；未指定格式或传空数组时返回 ZIP。 |\n| 模型材质重绘 | 按 ZIP、GLB、USDZ、OBJ ZIP、FBX ZIP 顺序返回文件 URL。 |\n| 多格式导出 | 按 ZIP、GLB、USDZ、OBJ ZIP、FBX ZIP、STL、3MF 顺序返回文件 URL。 |\n| 部件拆分 | 一个包含拆分结果的 GLB 文件 URL。 |\n| 模型关节化与动画 | `d.outputs[0].content` 为结果文件 URL，文件格式以实际结果为准，不固定为 ZIP。 |\n| 数字人自动绑骨 | 已绑骨 GLB 文件 URL；失败时可能返回包含 `error` 的 JSON 字符串。 |\n| 数字人动画重定向 | 包含 `actions` 的 JSON 字符串，列出各动作的结果 URL 或错误信息。 |\n\n未请求的可选格式可能返回 `NOT_REQUESTED`，该值不是文件 URL。对于 JSON 字符串结果，需要解析 `content` 后再读取其中的字段。\n",
+  "operationId": "getTask",
+  "parameters": [
+   {
+    "name": "taskid",
+    "in": "query",
+    "description": "任务ID",
+    "required": true,
+    "schema": {
+     "type": "integer",
+     "format": "int64"
+    },
+    "example": 1389513
+   }
+  ],
+  "responses": {
+   "200": {
+    "description": "成功时返回任务状态和结果。",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/lux3d_TaskQueryResponse"
+      },
+      "examples": {
+       "humanoidRigSuccess": {
+        "summary": "数字人绑骨成功",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 3742500,
+          "status": 3,
+          "outputs": [
+           {
+            "content": "https://example.com/rig.glb"
+           }
+          ]
+         }
+        }
+       },
+       "humanoidRigFailure": {
+        "summary": "模型不适合自动绑骨",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 3742500,
+          "status": 4,
+          "outputs": [
+           {
+            "content": "{\"error\": {\"code\": \"MODEL_NOT_RIGGABLE\", \"message\": \"Model does not meet rigging requirements\"}}"
+           }
+          ]
+         }
+        }
+       },
+       "humanoidRetargetGlbSuccess": {
+        "summary": "GLB 动作生成成功",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 3742500,
+          "status": 3,
+          "outputs": [
+           {
+            "content": "{\"actions\":[{\"animation_id\":\"Dance_Loop\",\"status\":\"success\",\"animationGlbUrl\":\"https://example.com/dance.glb\"}]}"
+           }
+          ]
+         }
+        }
+       },
+       "humanoidRetargetAllFailed": {
+        "summary": "所有动作失败",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 3742500,
+          "status": 4,
+          "outputs": [
+           {
+            "content": "{\"actions\":[{\"animation_id\":\"Swim_Fwd_Loop\",\"status\":\"failed\",\"error\":{\"code\":\"ANIMATION_RETARGET_FAILED\",\"message\":\"Action delivery failed: animation retarget failed\"}}]}"
+           }
+          ]
+         }
+        }
+       },
+       "humanoidRetargetFbxSuccess": {
+        "summary": "FBX 动作交付成功",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 3742500,
+          "status": 3,
+          "outputs": [
+           {
+            "content": "{\"actions\":[{\"animation_id\":\"Dance_Loop\",\"status\":\"success\",\"fbxUrl\":\"https://example.com/dance.fbx\"}]}"
+           }
+          ]
+         }
+        }
+       },
+       "running": {
+        "summary": "任务进行中",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 1389513,
+          "status": 1
+         }
+        }
+       },
+       "successMaterialTransferAllFormats": {
+        "summary": "材质重绘成功（全部格式）",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 1389513,
+          "outputs": [
+           {
+            "content": "https://cdn.example.com/output/result.zip"
+           },
+           {
+            "content": "https://cdn.example.com/output/textured.glb"
+           },
+           {
+            "content": "https://cdn.example.com/output/RealityKitPreview.usdz"
+           },
+           {
+            "content": "https://cos.example.com/lux3d/xxx/model_obj.zip"
+           },
+           {
+            "content": "https://cos.example.com/lux3d/xxx/model_fbx.zip"
+           }
+          ],
+          "status": 3
+         }
+        }
+       },
+       "successMaterialTransferPartialFormats": {
+        "summary": "材质重绘成功（ZIP、GLB、USDZ）",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 1389514,
+          "outputs": [
+           {
+            "content": "https://cdn.example.com/output/result.zip"
+           },
+           {
+            "content": "https://cdn.example.com/output/textured.glb"
+           },
+           {
+            "content": "https://cdn.example.com/output/RealityKitPreview.usdz"
+           },
+           {
+            "content": "NOT_REQUESTED"
+           },
+           {
+            "content": "NOT_REQUESTED"
+           }
+          ],
+          "status": 3
+         }
+        }
+       },
+       "successMultiFormatExport": {
+        "summary": "多格式导出成功（全部格式）",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": {
+          "taskId": 1389518,
+          "outputs": [
+           {
+            "content": "https://cdn.example.com/input/source.zip"
+           },
+           {
+            "content": "https://cdn.example.com/output/model.glb"
+           },
+           {
+            "content": "https://cdn.example.com/output/RealityKitPreview.usdz"
+           },
+           {
+            "content": "https://cos.e
+================================================================================
+/lux3d/v1/generate/img-to-3d/task/create
+{
+ "post": {
+  "tags": [
+   "Lux3D"
+  ],
+  "summary": "创建图生 3D 任务",
+  "description": "根据一张或多张图片创建异步 3D 生成任务，可选择 G1 或 G1-Turbo。省略 version 时使用默认版本。请求成功后返回任务 ID（taskid），可通过任务查询接口获取状态和结果。\n",
+  "operationId": "createImgTo3dTask",
+  "requestBody": {
+   "description": "图生 3D 任务请求体。",
+   "content": {
+    "application/json": {
+     "schema": {
+      "$ref": "#/components/schemas/lux3d_ImgTo3dRequest"
+     },
+     "examples": {
+      "createTaskG1": {
+       "summary": "创建图生 3D 任务（推荐：G1）",
+       "value": {
+        "img": "https://qhstaticssl.kujiale.com/image/jpeg/1784775590613/image_to_3d_model.jpg",
+        "version": "G1",
+        "faceCount": 300000,
+        "outputFormat": [
+         "zip",
+         "glb"
+        ]
+       }
+      },
+      "createTaskG1TurboMultiImage": {
+       "summary": "创建多图输入的图生 3D 任务（推荐：G1-Turbo）",
+       "value": {
+        "version": "G1-Turbo",
+        "imgs": [
+         "https://qhstaticssl.kujiale.com/image/png/1784775590866/multiview_input_1.png",
+         "https://qhstaticssl.kujiale.com/image/png/1784775591151/multiview_input_2.png"
+        ],
+        "outputFormat": [
+         "glb"
+        ],
+        "faceCount": 300000,
+        "enablePbr": true
+       }
+      }
+     }
+    }
+   },
+   "required": true
+  },
+  "responses": {
+   "200": {
+    "description": "成功时返回任务ID。",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/lux3d_TaskCreateResponse"
+      },
+      "examples": {
+       "success": {
+        "summary": "任务创建成功",
+        "value": {
+         "f": null,
+         "c": "0",
+         "m": "",
+         "d": 1256173
+        }
+       },
+       "concurrencyLimit": {
+        "summary": "生成任务并发已达上限",
+        "value": {
+         "f": null,
+         "c": "GENERATION_CONCURRENCY_LIMIT_EXCEEDED",
+         "m": "当前已有进行中的生成任务，请等待完成后再试",
+         "d": null
+        }
+       }
+      }
+     }
+    }
+   },
+   "401": {
+    "description": "未携带或无效的 Authorization，鉴权失败",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/lux3d_TaskCreateResponse"
+      }
+     }
+    }
+   },
+   "500": {
+    "description": "服务端内部错误",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/lux3d_TaskCreateResponse"
+      }
+     }
+    }
+   }
+  },
+  "security": [
+   {
+    "AuthorizationHeader": []
+   }
+  ],
+  "x-scalar-order": 3,
+  "x-codeSamples": [
+   {
+    "lang": "TypeScript",
+    "label": "Aholo SDK（TypeScript）",
+    "source": "import { createLux3dClient } from '@manycore/aholo-sdk-lux3d';\n\nconst lux3d = createLux3dClient({ region: 'cn' });\nconst taskId = await lux3d.imgTo3d.create({\n  img: 'https://example.com/object.jpg',\n  version: 'G1',\n});\nconst result = await lux3d.tasks.waitFor(taskId);\nconsole.log(result.outputs[0]?.content);"
+   },
+   {
+    "lang": "Java",
+    "label": "Aholo SDK（Java）",
+    "source": "import com.manycoreapis.sdk.core.AholoClientConfig;\nimport java.nio.file.Paths;\nimport com.manycoreapis.sdk.lux3d.Lux3dClient;\nimport com.manycoreapis.sdk.lux3d.model.ImageToFourViewCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.MultimodalToImageCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.ImgTo3dCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.TextTo3dCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.MaterialTransferCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.ArticulationAnimationCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.HumanoidAnimationRetargetCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.HumanoidAutoRigCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.MultiFormatExportCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.PartSplitCreateParams;\nimport com.manycoreapis.sdk.lux3d.model.TaskListParams;\nimport com.manycoreapis.sdk.lux3d.model.TaskPagedList;\nimport com.manycoreapis.sdk.lux3d.model.TaskResult;\n\nLux3dClient lux3d = Lux3dClient.create(AholoClientConfig.ofRegion(\"cn\"));\nlong taskId = lux3d.imgTo3d().create(\n    ImgTo3dCreateParams.builder()\n        .img(\"https://example.com/object.jpg\")\n        .version(\"G1\")\n        .build());\nTaskResult result = lux3d.tasks().waitFor(taskId);\nresult.outputs().forEach(o -> o.content().ifPresent(System.out::println));"
+   },
+   {
+    "lang": "Python",
+    "label": "Aholo SDK（Python）",
+    "source": "from manycore.aholo_sdk_lux3d import create_lux3d_client\n\nlux3d = create_lux3d_client(region='cn')\ntask_id = lux3d.img_to_3d.create(img='https://example.com/object.jpg', version='G1')\nresult = lux3d.tasks.wait_for(task_id)\nprint(result['outputs'][0]['content'])"
+   }
+  ]
+ }
+}

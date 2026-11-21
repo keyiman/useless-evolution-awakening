@@ -1,0 +1,179 @@
+import { useEffect, useMemo, useRef } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
+import { ORGAN_MAP, type OrganId } from '../engine/organs';
+import type { FamilyId } from '../engine/types';
+import { normalizeModel, organModel, attachmentLayout, measureAnatomy } from './attachment';
+import { MountedOrgan } from './MountedOrgan';
+import { RootGrowth } from './Creature';
+import { morphBody } from './morphology';
+
+function prepare(scene: THREE.Object3D) {
+  scene.traverse((obj) => {
+    const mesh = obj as THREE.Mesh;
+    if (!mesh.isMesh) return;
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    const clone = (mat:THREE.Material) => {
+      const std = mat.clone() as THREE.MeshStandardMaterial;
+      if ('envMapIntensity' in std) std.envMapIntensity = 1.25;
+      std.needsUpdate = true;
+      return std;
+    };
+    mesh.material=Array.isArray(mesh.material)?mesh.material.map(clone):clone(mesh.material);
+  });
+}
+
+export function Assembled({
+  family,
+  organs,
+  baseUrl,
+  organUrls,
+  secondUrl,
+  secondFamily,
+  test,
+  shapeKey,
+  onReady,
+}: {
+  family: FamilyId;
+  organs: OrganId[];
+  baseUrl: string;
+  organUrls: Record<string, string>;
+  secondUrl?: string | null;
+  secondFamily?: FamilyId | null;
+  test?: { kind: string; run?: number } | null;
+  shapeKey?: string;
+  onReady?: (key: string) => void;
+}) {
+  const baseGltf = useGLTF(baseUrl);
+  const secondGltf = useGLTF(secondUrl ?? baseUrl);
+  const active = useMemo(
+    () =>
+      organs
+        .map((id) => ({ id, url: organUrls[id] }))
+        .filter((o): o is { id: OrganId; url: string } => !!o.url),
+    [organs, organUrls],
+  );
+  const urls = useMemo(() => (active.length ? active.map((a) => a.url) : [baseUrl]), [active, baseUrl]);
+  const organGltfs = useGLTF(urls);
+  const group = useRef<THREE.Group>(null);
+  const start = useRef(-1);
+
+  const base = useMemo(() => {
+    const scene = morphBody(normalizeModel(baseGltf.scene, .98, 1.2),organs,family);
+    prepare(scene);
+    return scene;
+  }, [baseGltf,organs,family]);
+  const anatomy = useMemo(() => measureAnatomy(base,family), [base,family]);
+  const models = useMemo(() => {
+    return active.map((entry, i) => {
+      const model = organModel(organGltfs[i].scene, entry.id, anatomy);
+      prepare(model.scene);
+      return { id: entry.id, ...model };
+    });
+  }, [active, organGltfs, anatomy]);
+  const layout = useMemo(() => attachmentLayout(base, family, models, anatomy), [base, family, models, anatomy]);
+  const lift = layout.lift;
+  const parts = useMemo(() => models.map(m => ({ id: m.id, scene: m.scene, placement: layout.parts.find(p => p.id === m.id)! })), [models, layout]);
+  const second = useMemo(() => {
+    if (!secondUrl || !secondFamily) return null;
+    const scene = normalizeModel(secondGltf.scene, .58, .6);
+    prepare(scene);
+    scene.position.set(layout.dims.x*.35, .18, -.12);
+    return scene;
+  }, [secondGltf, secondUrl, secondFamily, layout.dims.x]);
+  useEffect(()=>()=>base.traverse(o=>{
+    const m=o as THREE.Mesh;if(!m.isMesh)return;m.geometry.dispose();
+    for(const mat of Array.isArray(m.material)?m.material:[m.material])mat.dispose();
+  }),[base]);
+  useEffect(()=>()=>{
+    for(const object of models.map(m=>m.scene))object.traverse(o=>{
+      const m=o as THREE.Mesh;if(m.isMesh){if(m.geometry.userData.organOwned)m.geometry.dispose();for(const mat of Array.isArray(m.material)?m.material:[m.material])mat.dispose();}
+    });
+  },[models]);
+  useEffect(()=>()=>second?.traverse(o=>{
+    const m=o as THREE.Mesh;if(m.isMesh)for(const mat of Array.isArray(m.material)?m.material:[m.material])mat.dispose();
+  }),[second]);
+  const camera=useThree(s=>s.camera);
+  const controls=useThree(s=>s.controls) as unknown as {target:THREE.Vector3;update:()=>void}|undefined;
+  const viewport=useThree(s=>s.size);
+  useEffect(()=>{
+    const bounds=new THREE.Box3(
+      new THREE.Vector3(-layout.dims.x/2,lift,-layout.dims.z/2),
+      new THREE.Vector3(layout.dims.x/2,lift+layout.dims.y,layout.dims.z/2),
+    );
+    for(const p of layout.parts)bounds.union(p.bounds);
+    if(second)bounds.expandByPoint(new THREE.Vector3(layout.dims.x*.35+.3,lift+.80,.34));
+    const size=bounds.getSize(new THREE.Vector3()),center=bounds.getCenter(new THREE.Vector3());
+    const distance=Math.max(2.4,Math.max(size.y*1.35,size.x/(viewport.width/Math.max(1,viewport.height))*1.35)/(2*Math.tan(35*Math.PI/360)));
+    camera.position.copy(center).addScaledVector(new THREE.Vector3(1.5,.7,1.75).normalize(),distance);
+    camera.lookAt(center);if(controls){controls.target.copy(center);controls.update();}
+  },[layout,lift,second,camera,controls,viewport.width,viewport.height]);
+  useEffect(()=>{onReady?.(shapeKey??'');},[base,models,shapeKey,onReady]);
+
+  useFrame((state) => {
+    if (!group.current) return;
+    if (start.current < 0) start.current = state.clock.elapsedTime;
+    const t = state.clock.elapsedTime - start.current;
+    const g = group.current;
+    g.position.set(0, 0, 0);
+    g.rotation.set(0, 0, 0);
+    if (!test) return;
+    if (test.kind === 'sealed') {
+      g.rotation.z = -Math.min(0.85, t * 0.9);
+    } else if (test.kind === 'stable') {
+      // 稳定环把每一次倾倒都拉回来：只允许很小的摆动
+      g.rotation.z = Math.sin(t * 3.2) * 0.045;
+    } else if (test.kind === 'autonomous') {
+      const p = Math.min(1, t * 0.35);
+      g.position.x = p * 1.1;
+      g.rotation.y = -p * 0.4;
+    } else if (test.kind === 'caged') {
+      g.rotation.y = Math.sin(t * 0.6) * 0.2;
+    } else if (test.kind === 'collect') {
+      g.rotation.z = Math.sin(t * 0.8) * 0.06;
+    } else if (test.kind === 'parasite') {
+      g.position.x = Math.sin(t * 24) * 0.008;
+      g.rotation.z = Math.sin(t * 19) * 0.012;
+    } else if (test.kind === 'fusion') {
+      g.rotation.y = Math.sin(t * 0.5) * 0.35;
+    } else if (test.kind === 'handle') {
+      g.rotation.z = Math.sin(t * 2.2) * 0.09;
+    } else if (test.kind === 'float') {
+      g.position.y = Math.min(0.5, t * 0.18) + Math.sin(t * 1.6) * 0.03;
+      g.rotation.y = Math.sin(t * 0.5) * 0.12;
+    } else if (test.kind === 'thrust') {
+      g.position.x = Math.sin(t * 1.7) * 0.5;
+      g.rotation.z = Math.sin(t * 1.7) * 0.2;
+    } else if (test.kind === 'burrow') {
+      g.position.y = -Math.min(0.55, t * 0.16);
+    } else if (test.kind === 'anchor') {
+      g.position.x = Math.sin(t * 28) * 0.006;
+      g.rotation.z = Math.sin(t * 24) * 0.008;
+    } else if (test.kind === 'bounce') {
+      g.position.y = Math.abs(Math.sin(t * 3.2)) * 0.3;
+    } else if (test.kind === 'spin') {
+      g.rotation.y = t * 2.2;
+    } else if (test.kind === 'fold') {
+      g.rotation.z = Math.min(0.7, t * 0.5);
+    } else {
+      g.rotation.z = Math.sin(t * 1.5) * 0.04;
+    }
+  });
+
+  useEffect(() => {
+    start.current = -1;
+  }, [test?.kind, test?.run]);
+
+  return (
+    <group ref={group}>
+      <group position={[0, lift, 0]}>
+        <primitive object={base} />
+        {second && <primitive object={second} />}
+      </group>
+      {parts.filter(p=>p.id!=='mycelium').map((p) => <MountedOrgan key={p.id} scene={p.scene} id={p.id} placement={p.placement} anatomy={anatomy} lift={lift}/>)}
+      {organs.includes('mycelium')&&<RootGrowth anatomy={anatomy} lift={lift} rooted={organs.includes('suction')}/>}
+    </group>
+  );
+}

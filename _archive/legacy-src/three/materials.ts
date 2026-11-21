@@ -1,0 +1,17 @@
+export const MAT = {
+  ceramic: { color: '#f3efe7', roughness: 0.36, metalness: 0.04 },
+  ceramicInner: { color: '#e6e0d4', roughness: 0.5, metalness: 0.02 },
+  metal: { color: '#b9bec6', roughness: 0.28, metalness: 0.9 },
+  darkMetal: { color: '#5d636c', roughness: 0.35, metalness: 0.85 },
+  dark: { color: '#26282c', roughness: 0.7, metalness: 0.1 },
+  accent: { color: '#e2703a', roughness: 0.4, metalness: 0.15 },
+  accent2: { color: '#3f8f7a', roughness: 0.45, metalness: 0.1 },
+  wood: { color: '#c49a6c', roughness: 0.62, metalness: 0.02 },
+  fabric: { color: '#3a4048', roughness: 0.95, metalness: 0 },
+  water: { color: '#7fc8e8', roughness: 0.08, metalness: 0.1, transparent: true, opacity: 0.6 },
+  glass: { color: '#cfe8f0', roughness: 0.05, metalness: 0.2, transparent: true, opacity: 0.18 },
+  shell: { color: '#9fb4c4', roughness: 0.2, metalness: 0.4, transparent: true, opacity: 0.16, side: 2 },
+  rubber: { color: '#1c1e21', roughness: 0.9, metalness: 0 },
+  skin: { color: '#d8b49a', roughness: 0.8, metalness: 0 },
+  paper: { color: '#f2ede3', roughness: 0.9, metalness: 0 },
+} as const;

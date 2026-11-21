@@ -1,0 +1,12 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages().at(-1);
+await p.evaluate(()=>{const cs=Array.from(document.querySelectorAll('input[type=checkbox]')).filter(e=>e.offsetParent!==null); cs.slice(0,2).forEach(e=>{if(!e.checked)e.click();});});
+await p.waitForTimeout(500);
+const checks=await p.evaluate(()=>Array.from(document.querySelectorAll('input[type=checkbox]')).filter(e=>e.offsetParent!==null).map(e=>e.checked));
+console.log('checks',checks);
+await p.getByText('提交新版本',{exact:true}).first().click();
+await p.waitForTimeout(5000);
+console.log((await p.locator('body').innerText()).slice(0,900));
+await p.screenshot({path:'_research/aholo-final2.png'});
+await b.close();

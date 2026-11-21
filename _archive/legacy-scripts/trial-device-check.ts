@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { trialDeviceFrame } from '../src/lab/trialDeviceMotion';
+const idle=trialDeviceFrame(null);
+assert.equal(idle.carriage,.92);
+assert.equal(idle.power,1);
+assert.equal(trialDeviceFrame(1.7).carriage,.46);
+assert.equal(trialDeviceFrame(5).carriage,.92,'arm returns to parked position');
+assert.equal(trialDeviceFrame(5).wind,0,'wind stops when test finishes');
+assert.equal(trialDeviceFrame(0).power,1);
+assert.equal(trialDeviceFrame(2).power,0,'external power is visibly disconnected');
+assert.deepEqual(trialDeviceFrame(0),trialDeviceFrame(0),'replay starts from same pose');
+for(let t=0;t<6;t+=.1)for(const v of Object.values(trialDeviceFrame(t)))assert.ok(Number.isFinite(v));
+console.log('Trial device motion checks passed: approach/return, wind stops, power disconnects, replay.');

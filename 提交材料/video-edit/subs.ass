@@ -1,0 +1,31 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1440
+PlayResY: 900
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Microsoft YaHei,78,&H00FFFFFF,&H000000FF,&H00181818,&H00000000,-1,0,0,0,100,100,0,0,1,3,0,5,80,80,0,1
+Style: Title2,Microsoft YaHei,52,&H00FFFFFF,&H000000FF,&H00181818,&H00000000,-1,0,0,0,100,100,0,0,1,2,0,5,80,80,0,1
+Style: Sub,Microsoft YaHei,36,&H00FFFFFF,&H000000FF,&H00101010,&H00000000,0,0,0,0,100,100,0,0,1,2,0,2,100,100,118,1
+Style: Tag,Microsoft YaHei,21,&H00D0D0D0,&H000000FF,&H00101010,&H00000000,0,0,0,0,100,100,0,0,1,1,0,9,40,40,28,1
+Style: Small,Microsoft YaHei,20,&H00C8C8C8,&H000000FF,&H00101010,&H00000000,0,0,0,0,100,100,0,0,1,1,0,2,60,60,24,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.00,0:00:04.80,Title,,0,0,0,,{\fad(400,400)}废物进化论\N{\fs24\c&H00D8D8D8&}THE AWAKENING OF THINGS
+Dialogue: 0,0:00:00.80,0:00:04.90,Tag,,0,0,0,,{\fad(250,250)}AI 片头 · 通义万相
+Dialogue: 0,0:00:05.10,0:00:56.90,Tag,,0,0,0,,{\fad(200,200)}真实运行画面 · Aholo Lux3D
+Dialogue: 0,0:00:57.10,0:01:01.50,Tag,,0,0,0,,{\fad(200,200)}AI 片尾 · 通义万相
+Dialogue: 0,0:00:05.20,0:00:12.40,Sub,,0,0,0,,{\fad(250,250)}它本来，只是一只杯子。
+Dialogue: 0,0:00:12.40,0:00:23.40,Sub,,0,0,0,,{\fad(250,250)}在 Aholo Lux3D 里，它被重新生成。
+Dialogue: 0,0:00:23.80,0:00:33.60,Sub,,0,0,0,,{\fad(250,250)}然后，长出本不属于它的结构。
+Dialogue: 0,0:00:34.20,0:00:39.70,Sub,,0,0,0,,{\fad(250,250)}椅子，用自己的腿迈步。
+Dialogue: 0,0:00:40.20,0:00:46.20,Sub,,0,0,0,,{\fad(250,250)}雨伞，学会浮游。
+Dialogue: 0,0:00:46.70,0:00:53.70,Sub,,0,0,0,,{\fad(250,250)}垃圾桶，自己开合。
+Dialogue: 0,0:00:54.20,0:00:56.70,Sub,,0,0,0,,{\fad(250,250)}你也可以，让它继续进化。
+Dialogue: 0,0:00:57.40,0:00:58.90,Sub,,0,0,0,,{\fad(200,200)}不必有用，也可以有自己的生命。
+Dialogue: 0,0:00:58.90,0:01:01.40,Title2,,0,0,0,,{\fad(300,300)}废物进化论 · 物的觉醒
+Dialogue: 0,0:00:59.80,0:01:01.50,Small,,0,0,0,,{\fad(200,200)}主体模型：Aholo Lux3D ｜ 片头片尾：阿里云通义万相

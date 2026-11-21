@@ -1,0 +1,12 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1600, height: 1000 } });
+const errs = [];
+p.on('pageerror', (e) => errs.push(e.message));
+await p.goto('http://127.0.0.1:5174/?r=32layout', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(6000);
+console.log('cards', await p.locator('.organ-card').count(), 'visible', await p.locator('.organ-card:visible').count(), 'cats', await p.locator('.tray-cat').count());
+console.log('tray scroll', await p.locator('.tray-grid').evaluate((el) => ({h: el.clientHeight, sh: el.scrollHeight})));
+await p.screenshot({ path: '_research/lab-32.png' });
+console.log('errs', errs.slice(0,3));
+await b.close();

@@ -1,0 +1,10 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1400, height: 900 } });
+p.on('console', (m) => { if (m.type() === 'error') console.log('console', m.text().slice(0, 160)); });
+p.on('response', (r) => { if (r.url().includes('/api/assets/lookup')) console.log('lookup', r.status()); });
+await p.goto('http://127.0.0.1:5174/?r=32check', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(8000);
+console.log('pending', await p.locator('.organ-card.pending').count());
+console.log('badges', await p.locator('.organ-pending').count());
+await b.close();

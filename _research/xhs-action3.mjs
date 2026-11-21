@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages()[0];
+await p.goto('https://creator.xiaohongshu.com/new/note-manager',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(2500);
+const card=p.locator('.note-card').first(); await card.hover(); await p.waitForTimeout(500);
+const btns=p.locator('.note-card__action-btn'); console.log('buttons',await btns.count());
+await btns.nth(2).click(); await p.waitForTimeout(1500);
+console.log('URL',p.url());
+console.log((await p.locator('body').innerText()).slice(-800));
+await p.screenshot({path:'_research/xhs-action3.png'});
+await b.close();

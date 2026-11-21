@@ -1,0 +1,12 @@
+﻿import fs from 'node:fs';
+let s = fs.readFileSync('src/three/Studio.tsx','utf8');
+s = s.replace(`      const p = Math.min(1, t / 1.3);
+      human.current.visible = result.animation !== 'walkaway' || t < 0.6;
+      human.current.position.set(-1.35 + p * 0.75, 0, 0.35);
+      human.current.rotation.y = 0.4;`, `      const p = Math.min(1, t / 1.3);
+      human.current.visible = result.animation !== 'walkaway' || t < 0.6;
+      human.current.position.set(-1.35 + p * 0.75, Math.abs(Math.sin(t * 7)) * 0.025 * (1 - p * 0.5), 0.35);
+      human.current.rotation.y = 0.4;
+      human.current.rotation.x = Math.min(0.22, Math.max(0, (t - 1.1) * 0.5));`);
+fs.writeFileSync('src/three/Studio.tsx', s);
+console.log('ok');

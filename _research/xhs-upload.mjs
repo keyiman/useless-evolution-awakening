@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages()[0];
+const files=['01-cover.png','02-four-exhibits.png','03-five-stages.png','04-workshop.png'].map(f=>`D:\\大创\\黑客松3D\\提交材料\\小红书\\${f}`);
+await p.locator('input[type=file]').first().setInputFiles(files);
+await p.waitForTimeout(8000);
+console.log((await p.locator('body').innerText()).slice(0,1600));
+const fields=await p.evaluate(()=>Array.from(document.querySelectorAll('input,textarea,[contenteditable=true]')).map((e,i)=>({i,tag:e.tagName,type:e.type,ph:e.placeholder,cls:e.className?.toString().slice(0,80),text:(e.innerText||'').slice(0,40),rect:(()=>{const r=e.getBoundingClientRect();return [Math.round(r.x),Math.round(r.y),Math.round(r.width),Math.round(r.height)]})()})));
+console.log(JSON.stringify(fields,null,1));
+await p.screenshot({path:'_research/xhs-uploaded.png'});
+await b.close();

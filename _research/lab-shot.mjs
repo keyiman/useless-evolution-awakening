@@ -1,0 +1,13 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 1 });
+const errs = [];
+p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
+p.on('pageerror', (e) => errs.push(String(e)));
+await p.goto('http://127.0.0.1:5174/', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(8000);
+await p.screenshot({ path: '_research/lab-01.png' });
+console.log('errors:', JSON.stringify(errs.slice(0, 6)));
+console.log('cards:', await p.locator('.organ-card').count(), 'base:', await p.locator('.base-card').count());
+console.log('canvas:', await p.locator('canvas').count());
+await b.close();

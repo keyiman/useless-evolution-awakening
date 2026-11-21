@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages().at(-1);
+const inputs=p.locator('input[type=file]');
+await inputs.nth(0).setInputFiles('D:\\大创\\黑客松3D\\提交材料\\废物进化论_物的觉醒_演示视频.mp4');
+await p.waitForTimeout(2500);
+await inputs.nth(1).setInputFiles('D:\\大创\\黑客松3D\\报告\\废物进化论_物的觉醒_项目报告.pdf');
+await p.waitForTimeout(3500);
+console.log((await p.locator('body').innerText()).slice(0,900));
+await p.screenshot({path:'_research/aholo-uploaded.png'});
+await b.close();

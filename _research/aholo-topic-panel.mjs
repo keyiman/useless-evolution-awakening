@@ -1,0 +1,10 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages().at(-1);
+await p.evaluate(()=>document.querySelector('#tab-topic')?.click());
+await p.waitForTimeout(1500);
+console.log((await p.locator('body').innerText()).slice(0,1500));
+const inputs=await p.evaluate(()=>Array.from(document.querySelectorAll('#panel-topic input,#panel-topic textarea,#panel-topic button')).map((e,i)=>({i,tag:e.tagName,type:e.type,ph:e.placeholder,val:e.value,text:e.innerText?.trim().slice(0,60)})));
+console.log(JSON.stringify(inputs,null,1));
+await p.screenshot({path:'_research/aholo-topic-panel.png'});
+await b.close();

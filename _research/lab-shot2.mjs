@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1600, height: 1000 } });
+await p.goto('http://127.0.0.1:5174/', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(5000);
+const arm = p.locator('.organ-card', { hasText: '机械臂' });
+await arm.click();
+await p.waitForTimeout(9000);
+await p.screenshot({ path: '_research/lab-03.png' });
+console.log('on:', await p.locator('.organ-card.on').count());
+await b.close();

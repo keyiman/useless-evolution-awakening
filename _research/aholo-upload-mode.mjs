@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages().at(-1);
+const v=p.getByText('上传视频文件',{exact:true}).first();
+console.log('video tab',await v.count()); await v.evaluate(el=>el.click()); await p.waitForTimeout(1000);
+const r=p.getByText('上传文件',{exact:true}).first();
+console.log('report tab',await r.count()); await r.evaluate(el=>el.click()); await p.waitForTimeout(1000);
+const files=await p.evaluate(()=>Array.from(document.querySelectorAll('input[type=file]')).map((e,i)=>({i,accept:e.accept,multiple:e.multiple,parent:e.parentElement?.innerText?.slice(0,80),rect:(()=>{const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height]})()})));
+console.log(JSON.stringify(files,null,1));
+await p.screenshot({path:'_research/aholo-upload-mode.png'});
+await b.close();

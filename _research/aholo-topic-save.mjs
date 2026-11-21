@@ -1,0 +1,12 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages().at(-1);
+const name=p.locator('#panel-topic input[type=text]').first();
+const desc=p.locator('#panel-topic textarea').first();
+await name.fill('废物进化论 · 物的觉醒');
+await desc.fill('四件日常物品 × 五个进化阶段。以 Aholo Lux3D 生成的真实模型为主体，水杯、椅子、雨伞、垃圾桶各自从原物苏醒、移动、感知、舒展；关节、形变与动作由本作品后制，原始 GLB 可下载对照。');
+await p.getByText('保存修改',{exact:true}).first().click();
+await p.waitForTimeout(2500);
+console.log((await p.locator('body').innerText()).slice(0,700));
+await p.screenshot({path:'_research/aholo-topic-saved.png'});
+await b.close();

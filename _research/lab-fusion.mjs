@@ -1,0 +1,13 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1600, height: 1000 } });
+const errs = [];
+p.on('pageerror', (e) => errs.push(e.message));
+await p.goto('http://127.0.0.1:5174/', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(5000);
+await p.locator('.fusion-chip', { hasText: '椅子' }).click();
+await p.waitForTimeout(8000);
+await p.screenshot({ path: '_research/lab-fusion.png' });
+console.log('errors:', errs.slice(0,3));
+console.log('fusion on:', await p.locator('.fusion-chip.on').innerText());
+await b.close();

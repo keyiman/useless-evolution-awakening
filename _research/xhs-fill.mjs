@@ -1,0 +1,18 @@
+﻿import { chromium } from 'playwright-core';
+import fs from 'node:fs';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages()[0];
+const raw=fs.readFileSync('提交材料/小红书/小红书文案.txt','utf8').replace(/\r/g,'');
+const lines=raw.split('\n');
+const title=lines[0].replace(/^标题：/,'').trim();
+const body=lines.slice(1).join('\n').trim();
+console.log('title',title,'body chars',body.length);
+await p.locator('input[placeholder="填写标题会有更多赞哦"]').fill(title);
+const editor=p.locator('.tiptap.ProseMirror').first();
+await editor.click();
+await editor.fill(body);
+await p.waitForTimeout(1000);
+console.log('title value', await p.locator('input[placeholder="填写标题会有更多赞哦"]').inputValue());
+console.log('body', (await editor.innerText()).slice(0,500));
+await p.screenshot({path:'_research/xhs-filled.png', fullPage:false});
+await b.close();

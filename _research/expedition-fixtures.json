@@ -1,0 +1,194 @@
+{
+  "cup-won": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY3VwJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIyd2hlZWxzJTIyJTJDJTIyZXllJTIyJTJDJTIyc2VhbCUyMiUyQyUyMnNvbGFyJTIyJTVEJTJDJTIycCUyMiUzQSUyMndvbiUyMiU3RA==",
+    "choices": [
+      "wheels",
+      "eye",
+      "seal",
+      "solar"
+    ]
+  },
+  "cup-watcher": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY3VwJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIyd2hlZWxzJTIyJTJDJTIyZXllJTIyJTJDJTIyc2VhbCUyMiUyQyUyMmxlZ3MlMjIlNUQlMkMlMjJwJTIyJTNBJTIycmVhZHklMjIlN0Q=",
+    "choices": [
+      "wheels",
+      "eye",
+      "seal",
+      "legs"
+    ]
+  },
+  "cup-lost": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY3VwJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIyd2hlZWxzJTIyJTJDJTIyZXllJTIyJTJDJTIyc2VhbCUyMiUyQyUyMmxlZ3MlMjIlMkMlMjJzcHJpbmclMjIlNUQlMkMlMjJwJTIyJTNBJTIybG9zdCUyMiU3RA==",
+    "choices": [
+      "wheels",
+      "eye",
+      "seal",
+      "legs",
+      "spring"
+    ]
+  },
+  "cup-drifter": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY3VwJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIyd2hlZWxzJTIyJTJDJTIyYmFsbG9vbiUyMiUyQyUyMmZlYXRoZXJzJTIyJTJDJTIyZXllJTIyJTJDJTIyamV0JTIyJTVEJTJDJTIycCUyMiUzQSUyMnJlYWR5JTIyJTdE",
+    "choices": [
+      "wheels",
+      "balloon",
+      "feathers",
+      "eye",
+      "jet"
+    ]
+  },
+  "cup-rooted": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY3VwJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIyd2hlZWxzJTIyJTJDJTIyc2VhbCUyMiUyQyUyMnN1Y3Rpb24lMjIlMkMlMjJteWNlbGl1bSUyMiU1RCUyQyUyMnAlMjIlM0ElMjJyZWFkeSUyMiU3RA==",
+    "choices": [
+      "wheels",
+      "seal",
+      "suction",
+      "mycelium"
+    ]
+  },
+  "chair-drifter": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY2hhaXIlMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJqZXQlMjIlMkMlMjJwYXJhY2h1dGUlMjIlMkMlMjJ3aGVlbHMlMjIlMkMlMjJiYWxsb29uJTIyJTVEJTJDJTIycCUyMiUzQSUyMnJlYWR5JTIyJTdE",
+    "choices": [
+      "jet",
+      "parachute",
+      "wheels",
+      "balloon"
+    ]
+  },
+  "chair-lost": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY2hhaXIlMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJqZXQlMjIlMkMlMjJwYXJhY2h1dGUlMjIlMkMlMjJ3aGVlbHMlMjIlMkMlMjJiYWxsb29uJTIyJTJDJTIyc3ByaW5nJTIyJTVEJTJDJTIycCUyMiUzQSUyMmxvc3QlMjIlN0Q=",
+    "choices": [
+      "jet",
+      "parachute",
+      "wheels",
+      "balloon",
+      "spring"
+    ]
+  },
+  "chair-won": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY2hhaXIlMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJqZXQlMjIlMkMlMjJwYXJhY2h1dGUlMjIlMkMlMjJ3aGVlbHMlMjIlMkMlMjJiYWxsb29uJTIyJTJDJTIybXljZWxpdW0lMjIlNUQlMkMlMjJwJTIyJTNBJTIyd29uJTIyJTdE",
+    "choices": [
+      "jet",
+      "parachute",
+      "wheels",
+      "balloon",
+      "mycelium"
+    ]
+  },
+  "chair-rooted": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY2hhaXIlMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJqZXQlMjIlMkMlMjJwYXJhY2h1dGUlMjIlMkMlMjJleWUlMjIlMkMlMjJzdWN0aW9uJTIyJTJDJTIybXljZWxpdW0lMjIlNUQlMkMlMjJwJTIyJTNBJTIycmVhZHklMjIlN0Q=",
+    "choices": [
+      "jet",
+      "parachute",
+      "eye",
+      "suction",
+      "mycelium"
+    ]
+  },
+  "chair-watcher": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyY2hhaXIlMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJqZXQlMjIlMkMlMjJwYXJhY2h1dGUlMjIlMkMlMjJleWUlMjIlMkMlMjJsZWdzJTIyJTVEJTJDJTIycCUyMiUzQSUyMnJlYWR5JTIyJTdE",
+    "choices": [
+      "jet",
+      "parachute",
+      "eye",
+      "legs"
+    ]
+  },
+  "umbrella-lost": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIydW1icmVsbGElMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJzcHJpbmclMjIlMkMlMjJmZWF0aGVycyUyMiU1RCUyQyUyMnAlMjIlM0ElMjJsb3N0JTIyJTdE",
+    "choices": [
+      "spring",
+      "feathers"
+    ]
+  },
+  "umbrella-drifter": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIydW1icmVsbGElMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJzcHJpbmclMjIlMkMlMjJ3aGVlbHMlMjIlMkMlMjJmZWF0aGVycyUyMiUyQyUyMmJhbGxvb24lMjIlMkMlMjJqZXQlMjIlNUQlMkMlMjJwJTIyJTNBJTIycmVhZHklMjIlN0Q=",
+    "choices": [
+      "spring",
+      "wheels",
+      "feathers",
+      "balloon",
+      "jet"
+    ]
+  },
+  "umbrella-won": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIydW1icmVsbGElMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJzcHJpbmclMjIlMkMlMjJ3aGVlbHMlMjIlMkMlMjJmZWF0aGVycyUyMiUyQyUyMmJhbGxvb24lMjIlMkMlMjJqZXQlMjIlMkMlMjJteWNlbGl1bSUyMiU1RCUyQyUyMnAlMjIlM0ElMjJ3b24lMjIlN0Q=",
+    "choices": [
+      "spring",
+      "wheels",
+      "feathers",
+      "balloon",
+      "jet",
+      "mycelium"
+    ]
+  },
+  "umbrella-watcher": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIydW1icmVsbGElMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJzcHJpbmclMjIlMkMlMjJ3aGVlbHMlMjIlMkMlMjJmZWF0aGVycyUyMiUyQyUyMmJhbGxvb24lMjIlMkMlMjJsZWdzJTIyJTJDJTIyZXllJTIyJTVEJTJDJTIycCUyMiUzQSUyMnJlYWR5JTIyJTdE",
+    "choices": [
+      "spring",
+      "wheels",
+      "feathers",
+      "balloon",
+      "legs",
+      "eye"
+    ]
+  },
+  "umbrella-rooted": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIydW1icmVsbGElMjIlMkMlMjJzJTIyJTNBJTIyRVNDQVBFLTAwMSUyMiUyQyUyMmMlMjIlM0ElNUIlMjJzcHJpbmclMjIlMkMlMjJ3aGVlbHMlMjIlMkMlMjJwYXJhY2h1dGUlMjIlMkMlMjJzdWN0aW9uJTIyJTJDJTIybXljZWxpdW0lMjIlNUQlMkMlMjJwJTIyJTNBJTIycmVhZHklMjIlN0Q=",
+    "choices": [
+      "spring",
+      "wheels",
+      "parachute",
+      "suction",
+      "mycelium"
+    ]
+  },
+  "bin-lost": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyYmluJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIybGVncyUyMiUyQyUyMnNwcmluZyUyMiUyQyUyMndoZWVscyUyMiU1RCUyQyUyMnAlMjIlM0ElMjJsb3N0JTIyJTdE",
+    "choices": [
+      "legs",
+      "spring",
+      "wheels"
+    ]
+  },
+  "bin-watcher": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyYmluJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIybGVncyUyMiUyQyUyMnNwcmluZyUyMiUyQyUyMnNlYWwlMjIlMkMlMjJsZWdzJTIyJTJDJTIyZXllJTIyJTVEJTJDJTIycCUyMiUzQSUyMnJlYWR5JTIyJTdE",
+    "choices": [
+      "legs",
+      "spring",
+      "seal",
+      "legs",
+      "eye"
+    ]
+  },
+  "bin-won": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyYmluJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIybGVncyUyMiUyQyUyMnNwcmluZyUyMiUyQyUyMnNlYWwlMjIlMkMlMjJsZWdzJTIyJTJDJTIyc29sYXIlMjIlNUQlMkMlMjJwJTIyJTNBJTIyd29uJTIyJTdE",
+    "choices": [
+      "legs",
+      "spring",
+      "seal",
+      "legs",
+      "solar"
+    ]
+  },
+  "bin-drifter": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyYmluJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIybGVncyUyMiUyQyUyMnNwcmluZyUyMiUyQyUyMnNlYWwlMjIlMkMlMjJqZXQlMjIlMkMlMjJiYWxsb29uJTIyJTVEJTJDJTIycCUyMiUzQSUyMnJlYWR5JTIyJTdE",
+    "choices": [
+      "legs",
+      "spring",
+      "seal",
+      "jet",
+      "balloon"
+    ]
+  },
+  "bin-rooted": {
+    "code": "JTdCJTIydiUyMiUzQTElMkMlMjJmJTIyJTNBJTIyYmluJTIyJTJDJTIycyUyMiUzQSUyMkVTQ0FQRS0wMDElMjIlMkMlMjJjJTIyJTNBJTVCJTIybGVncyUyMiUyQyUyMmV5ZSUyMiUyQyUyMnN1Y3Rpb24lMjIlMkMlMjJqZXQlMjIlMkMlMjJteWNlbGl1bSUyMiU1RCUyQyUyMnAlMjIlM0ElMjJyZWFkeSUyMiU3RA==",
+    "choices": [
+      "legs",
+      "eye",
+      "suction",
+      "jet",
+      "mycelium"
+    ]
+  }
+}

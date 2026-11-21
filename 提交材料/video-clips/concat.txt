@@ -1,0 +1,6 @@
+file 'D:/大创/黑客松3D/提交材料/video-clips/00-title.mp4'
+file 'D:/大创/黑客松3D/提交材料/video-clips/01-demo.mp4'
+file 'D:/大创/黑客松3D/提交材料/video-clips/02-fusion.mp4'
+file 'D:/大创/黑客松3D/提交材料/video-clips/03-auto.mp4'
+file 'D:/大创/黑客松3D/提交材料/video-clips/04-share.mp4'
+file 'D:/大创/黑客松3D/提交材料/video-clips/99-outro.mp4'

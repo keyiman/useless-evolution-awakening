@@ -1,18 +1,21 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+
+# Environment and sensitive files
 .env
 .env.local
-_research/
-_archive/
-报告/
-提交材料/
-鎶ュ憡/
-docs/
+
+# IDE and system
 .run/
-*.log
-*.zip
-*.pdf
-_proposal.txt
+.idea/
+.vscode/
 *.tsbuildinfo
 .DS_Store
+Thumbs.db
+*.log
+
+# Cache / temp
 public/models/.jobs.json

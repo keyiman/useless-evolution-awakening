@@ -1,0 +1,12 @@
+﻿import { chromium } from 'playwright-core';
+const url='https://www.xiaohongshu.com/explore/6af99ab60000000018028749?xsec_token=YBLRjsOctx_XaWXilg1LVLsU4EhLnzAM4jFgFgA1-DTLk%3D&xsec_source=pc_creatormng';
+const b=await chromium.launch({executablePath:'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const ctx=await b.newContext({viewport:{width:1440,height:1000}});
+const p=await ctx.newPage();
+await p.goto(url,{waitUntil:'domcontentloaded'}); await p.waitForTimeout(5000);
+console.log('URL',p.url());
+const text=await p.locator('body').innerText();
+console.log('HAS_TITLE',text.includes('我让一只杯子'),'HAS_TAG',text.includes('Aholo黑客松'),'LEN',text.length);
+console.log(text.slice(0,300).replace(/\n/g,' | '));
+await p.screenshot({path:'_research/xhs-anon.png'});
+await b.close();

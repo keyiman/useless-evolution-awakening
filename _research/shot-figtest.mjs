@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader','--enable-unsafe-swiftshader'] });
+const p = await b.newPage({ viewport: { width: 1680, height: 1050 }, deviceScaleFactor: 2 });
+await p.goto('http://localhost:5173/?demo=cup&gen=5', { waitUntil:'domcontentloaded' });
+await p.waitForSelector('.hud-title'); await p.waitForTimeout(4000);
+await p.getByRole('button', { name: '无用性测试' }).click();
+await p.waitForTimeout(1500);
+const t0=Date.now();
+await p.screenshot({ path:'报告/figs/fig-test.png' });
+console.log('shot ms', Date.now()-t0);
+await b.close();

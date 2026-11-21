@@ -1,0 +1,16 @@
+import { chromium } from 'playwright-core';
+const browser=await chromium.launch({executablePath:'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const page=await browser.newPage({viewport:{width:1440,height:960}});
+page.on('pageerror',e=>console.log('PAGEERROR',e.message));
+await page.goto('http://localhost:8787/?spin=0');
+await page.waitForSelector('.evo-card');
+await page.waitForFunction(()=>!document.querySelector('.evo-loading'));
+await page.waitForTimeout(1800);
+await page.screenshot({path:'_research/expedition-initial.png'});
+console.log('cards',await page.locator('.evo-card').evaluateAll(els=>els.map(e=>e.getAttribute('data-organ'))));
+await page.locator('.evo-card').first().click();
+await page.waitForFunction(()=>!document.querySelector('.evo-loading'));
+await page.waitForTimeout(1800);
+await page.screenshot({path:'_research/expedition-mutation.png'});
+console.log('body', (await page.locator('.evo-trial-console').innerText()).slice(0,350));
+await browser.close();

@@ -1,0 +1,10 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages().at(-1);
+const selects=p.getByText('请选择',{exact:true});
+console.log('selects',await selects.count());
+await selects.nth(0).click(); await p.waitForTimeout(800);
+const texts=await p.evaluate(()=>Array.from(document.querySelectorAll('[role=option],li,.option,[class*=option]')).map(e=>e.innerText?.trim()).filter(Boolean).slice(-40));
+console.log(texts);
+await p.screenshot({path:'_research/aholo-select1.png'});
+await b.close();

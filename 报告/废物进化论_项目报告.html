@@ -1,0 +1,344 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>废物进化论 · 器官库 · 项目报告</title><style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #eceef1; color: #1b1f24; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; font-size: 10.1pt; line-height: 1.68; }
+.page { width: 210mm; height: 297mm; padding: 15mm 18mm 13mm; background: #fff; position: relative; page-break-after: always; overflow: hidden; }
+.page:last-child { page-break-after: auto; }
+.runhead { display: flex; justify-content: space-between; font-size: 8pt; letter-spacing: .08em; color: #9aa1aa; border-bottom: 1px solid #e3e6ea; padding-bottom: 4px; margin-bottom: 8mm; text-transform: uppercase; }
+.runfoot { position: absolute; left: 18mm; right: 18mm; bottom: 8mm; display: flex; justify-content: space-between; font-size: 8pt; color: #9aa1aa; border-top: 1px solid #e3e6ea; padding-top: 4px; }
+h1 { font-size: 24pt; margin: 0 0 3mm; letter-spacing: -.01em; }
+h2 { font-size: 15pt; margin: 0 0 3.5mm; padding-bottom: 2mm; border-bottom: 2px solid #e2703a; display: inline-block; }
+h3 { font-size: 11.2pt; margin: 5mm 0 1.6mm; color: #111; }
+p { margin: 0 0 2.6mm; text-align: justify; }
+.lead { font-size: 11.2pt; color: #333; }
+.muted { color: #6b7280; }
+.mono { font-family: "Cascadia Mono", Consolas, monospace; font-size: 8.5pt; }
+.en { font-size: 8pt; color: #8b929b; letter-spacing: .04em; }
+table { width: 100%; border-collapse: collapse; margin: 2.5mm 0 4mm; font-size: 8.6pt; }
+th { text-align: left; background: #f5f6f8; font-weight: 600; padding: 1.8mm 2mm; border-bottom: 1px solid #d9dde2; }
+td { padding: 1.5mm 2mm; border-bottom: 1px solid #eceef1; vertical-align: top; }
+td.num { text-align: right; font-family: "Cascadia Mono", Consolas, monospace; font-size: 8.4pt; }
+figure { margin: 2.5mm 0 4mm; }
+figure img { width: 100%; border-radius: 2mm; display: block; }
+figcaption { font-size: 8.1pt; color: #7b828b; margin-top: 1.4mm; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+.box { border: 1px solid #e1e4e8; border-radius: 2mm; padding: 3.4mm; background: #fafbfc; }
+.box b { font-size: 9.6pt; }
+.box p { margin: 1.2mm 0 0; font-size: 8.8pt; }
+.kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 3.5mm 0; }
+.kpi div { border-top: 2px solid #e2703a; padding-top: 2mm; }
+.kpi b { display: block; font-size: 17pt; font-family: "Cascadia Mono", Consolas, monospace; line-height: 1.1; }
+.kpi span { font-size: 7.8pt; color: #6b7280; }
+pre { background: #12161b; color: #dfe5ec; padding: 3.4mm; border-radius: 2mm; font-family: "Cascadia Mono", Consolas, monospace; font-size: 7.9pt; line-height: 1.5; white-space: pre-wrap; }
+.cover { background: #0d1014; color: #f2f4f7; padding: 0; }
+.cover .inner { position: absolute; inset: 0; padding: 20mm 22mm; display: flex; flex-direction: column; }
+.cover .tag { color: #e2703a; font-size: 8.6pt; letter-spacing: .26em; text-transform: uppercase; }
+.cover h1 { font-size: 40pt; line-height: 1.1; margin: 5mm 0 2mm; }
+.cover .sub { font-size: 13pt; color: #aeb6c0; letter-spacing: .02em; }
+.cover .hero { margin-top: auto; height: 112mm; }
+.cover .hero img { width: 100%; height: 100%; object-fit: cover; border-radius: 2mm; opacity: .94; }
+.cover .meta { display: flex; justify-content: space-between; font-size: 8.4pt; color: #8d96a1; margin-top: 5mm; border-top: 1px solid #262c34; padding-top: 3.5mm; }
+.cover .meta b { color: #e8ecf1; font-weight: 600; }
+.toc { list-style: none; padding: 0; margin: 3mm 0; }
+.toc li { display: flex; justify-content: space-between; border-bottom: 1px dotted #d5d9de; padding: 1.9mm 0; }
+.toc b { font-weight: 600; }
+.flow { display: flex; align-items: stretch; gap: 1.6mm; margin: 3mm 0; }
+.flow div { flex: 1; border: 1px solid #dfe3e8; border-radius: 1.5mm; padding: 2.4mm; text-align: center; font-size: 8.1pt; background: #fafbfc; }
+.flow span { color: #e2703a; font-weight: 700; }
+.note { border-left: 3px solid #e2703a; padding: 2mm 0 2mm 3.5mm; color: #4b5563; background: #fdf8f5; margin: 2.6mm 0; font-size: 9pt; }
+ul, ol { margin: 0 0 2.6mm; padding-left: 4.6mm; }
+li { margin-bottom: 1mm; }
+.organ-table td { font-size: 8.1pt; padding: 1.2mm 1.6mm; }
+.organ-table th { font-size: 8.1pt; padding: 1.5mm 1.6mm; }
+.tag { display: inline-block; padding: 0.4mm 1.6mm; border-radius: 999px; background: #f1f3f5; color: #4b5563; font-size: 7.4pt; font-family: "Cascadia Mono", Consolas, monospace; }
+.tag.hot { background: #fdf0e9; color: #c25525; }
+</style></head><body>
+
+<section class="page cover">
+  <div class="inner">
+    <div class="tag">2026 Aholo Global 3D AI Hackathon · Project Report</div>
+    <h1>废物进化论<br>器官库</h1>
+    <div class="sub">Useless Evolution: The Organ Library</div>
+    <div class="sub" style="font-size:10.5pt;margin-top:2.5mm;color:#7f8894">32 个 Lux3D 器官 × 4 个日常物体：把“过度设计”变成可以亲手拼装的 3D 实验</div>
+    <div class="hero"><img src="figs/fig-lab-hero.png" alt="器官库：四器官组合"></div>
+    <div class="meta">
+      <span>参赛者：<b>【姓名 / 团队】</b></span>
+      <span>技术：<b>React · Three.js · Node · Aholo Lux3D G1-Turbo</b></span>
+      <span>版本：<b>lab-1.0</b></span>
+      <span>2026-11</span>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>摘要 · 目录</span></div>
+  <h2>摘要</h2>
+  <p class="lead">《废物进化论 · 器官库》把“过度设计”做成一套可以自由拼装的 3D 器官系统：4 个日常物体、32 个由 Aholo Lux3D 预生成的器官模块，每个基础物体最多叠加 4 个器官，形成 4.1 万种组合；再加上跨物种融合与每 4.8 秒一次的自主变异，物品会在你眼前一步步长出本不该属于它的结构。</p>
+  <p>与“单次文生 3D”不同，这里的每一个器官都是赛前建好的真实资产，运行时不调用任何模型接口；玩家做的是组合、观察与测试。评价也不是黑箱：右侧逐项列出每个器官对可用性、荒诞度、辨识度的加减，测试动作直接作用在当前拼装出的 GLB 上，并指出是哪一个器官触发了失败。</p>
+  <div class="kpi">
+    <div><b>32</b><span>Lux3D 器官</span></div>
+    <div><b>4</b><span>基础物体</span></div>
+    <div><b>41,449</b><span>器官组合 / 基础</span></div>
+    <div><b>32</b><span>真实器官资产</span></div>
+  </div>
+  <ul class="toc">
+    <li><b>01　创意与问题意识</b><span>从进化树到器官库</span></li>
+    <li><b>02　体验流程</b><span>选基础、装器官、融合、变异</span></li>
+    <li><b>03　系统架构</b><span>资产库与运行时分离</span></li>
+    <li><b>04　器官库设计</b><span>32 个器官与功能代价</span></li>
+    <li><b>05　评价与无用性测试</b><span>公式、触发结构与动作</span></li>
+    <li><b>06　Lux3D 生产管线</b><span>提示词、批量任务、压缩</span></li>
+    <li><b>07　视觉与交互</b><span>对齐、融合、自主变异</span></li>
+    <li><b>08　工程与质量控制</b><span>构建、分享、安全</span></li>
+    <li><b>09　局限与下一步</b><span>我们还没做什么</span></li>
+    <li><b>10　提交信息</b><span>运行、材料、声明</span></li>
+  </ul>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>01</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>01 创意与问题意识</span></div>
+  <h2>01　创意与问题意识</h2>
+  <p class="lead">一个系统可以只优化单一指标：它越来越“成功”，同时越来越不适合被使用。水杯可以做到一滴也不洒，代价是一滴也倒不出来。</p>
+  <h3>1.1 从“进化树”到“器官库”</h3>
+  <p>最初的版本是一棵三选一的进化树：每一代由规则生成三个候选，选中的分支交给 Lux3D 生成。它证明了“规则 → 模型”的链路，但玩家能选的东西太少，Lux3D 也被放进了运行时，等待时间打断了体验。</p>
+  <p>这一版把方向倒过来：<b>Lux3D 只在赛前做建模</b>，把“器官”做成一个个独立、可复用的真实资产；运行时只做拼装。玩家不再等模型，而是在 32 个已经建好的器官里自由组合，看同一只杯子如何被不同的结构一点点推离原来的用途。</p>
+  <h3>1.2 四条设计原则</h3>
+  <div class="two">
+    <div class="box"><b>器官必须可见</b><p class="muted">每个器官都对应一个独立 GLB，装上就出现在模型上，不是只改一行文案或一个分数。</p></div>
+    <div class="box"><b>功能必须可解释</b><p class="muted">每个器官都带明确的可用性代价、荒诞度与辨识度；测试会指出具体是哪一个结构造成了失败。</p></div>
+  </div>
+  <div class="two" style="margin-top:2.5mm">
+    <div class="box"><b>组合必须自由</b><p class="muted">顶 / 侧 / 底 / 环绕四类锚点，最多 4 个器官叠加；不预设“正确搭配”，也不阻止荒谬搭配。</p></div>
+    <div class="box"><b>模型必须赛前建好</b><p class="muted">运行时零 Lux3D 调用；所有器官在开发阶段批量生成、压缩、写入 manifest，Demo 只加载本地 GLB。</p></div>
+  </div>
+  <h3>1.3 与“单次 AI 生成”的区别</h3>
+  <table>
+    <tr><th style="width:24%">维度</th><th>单次文生 3D</th><th>本作品</th></tr>
+    <tr><td>结果</td><td>一次性网格</td><td>可反复拼装的器官系统</td></tr>
+    <tr><td>因果</td><td>提示词即全部</td><td>器官 → 功能代价 → 组合 → 测试</td></tr>
+    <tr><td>选择</td><td>抽卡</td><td>32 选 4、融合、自主变异</td></tr>
+    <tr><td>模型调用</td><td>每次生成都要等</td><td>赛前预生成，运行时零调用</td></tr>
+  </table>
+  <div class="note">我们把 Lux3D 当作“资产生产线”，而不是“运行时魔法”。创意来自器官之间的结构冲突，Lux3D 负责把每一个器官做成可信的产品级网格。</div>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>02</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>02 体验流程</span></div>
+  <h2>02　体验流程</h2>
+  <p>一次完整体验约 3–6 分钟。进入后先选基础物体，再从 32 个器官里挑最多 4 个装上；也可以打开“自主变异”，让物体自己长。</p>
+  <div class="flow">
+    <div><span>1</span><br>选基础<br><span class="mono">cup/chair/umbrella/bin</span></div>
+    <div><span>2</span><br>装器官<br><span class="mono">32 选 4</span></div>
+    <div><span>3</span><br>跨物种融合<br><span class="mono">+ second base</span></div>
+    <div><span>4</span><br>自主变异<br><span class="mono">4.8s / tick</span></div>
+    <div><span>5</span><br>组合评价<br><span class="mono">U / A / R / Q</span></div>
+    <div><span>6</span><br>无用性测试</div>
+  </div>
+  <figure><img src="figs/fig-lab-default.png" alt="器官库主界面"><figcaption>图 1　主界面：左侧选基础与融合，中间观察拼装结果，右侧是逐项评价与测试，底部是 32 个器官的分类卡片。</figcaption></figure>
+  <h3>2.1 32 个器官，按锚点分类</h3>
+  <p>底部器官库按“顶部 / 侧面 / 底部 / 环绕”分成四类，并显示每类数量；卡片上直接写清可用性代价与一句结构说明。点击即叠加，超过 4 个时最早的一个被替换，保持画面可读。</p>
+  <figure><img src="figs/fig-organ-tray.png" alt="器官库卡片"><figcaption>图 2　器官库：32 个器官、4 个分类、4 个槽位；每个器官都是独立的 Lux3D GLB。</figcaption></figure>
+  <div class="note">没有“正确答案”。同一只杯子可以装上太阳能板、气球和机械腿，也可以被防护笼、密封盖和锁扣彻底封死；系统只负责把代价算给你看。</div>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>03</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>03 系统架构</span></div>
+  <h2>03　系统架构</h2>
+  <p>系统分成两条时间线：<b>赛前</b>用 Lux3D 批量生产器官与基础资产；<b>运行时</b>只做查询、拼装、评价与测试。两条线通过 manifest 和本地 GLB 解耦。</p>
+  <div class="flow">
+    <div><b>赛前 · Lux3D</b><br><span class="mono">32 organ tasks</span></div>
+    <div>→</div>
+    <div><b>manifest + GLB</b><br><span class="mono">hash / taskId</span></div>
+    <div>→</div>
+    <div><b>运行时 · R3F</b><br><span class="mono">assemble / score</span></div>
+    <div>→</div>
+    <div><b>测试 · 分享</b><br><span class="mono">flags / #lab=</span></div>
+  </div>
+  <h3>3.1 资产库与运行时分离</h3>
+  <table>
+    <tr><th style="width:20%">层</th><th>内容</th><th style="width:28%">运行时行为</th></tr>
+    <tr><td>资产库</td><td>32 个器官 GLB + 4 个基础 GLB，按提示词哈希命名</td><td>只读；`POST /api/assets/lookup` 查 URL</td></tr>
+    <tr><td>拼装</td><td>基础归一化、锚点定位、同锚点错位、轮式底盘抬升、融合体缩放</td><td>纯前端矩阵变换，无网络</td></tr>
+    <tr><td>评价</td><td>每个器官的 utility / absurdity / recognition 与 flags</td><td>逐项相加，实时显示算式</td></tr>
+    <tr><td>测试</td><td>按 flags 选规则与动作</td><td>直接变换当前拼装 group</td></tr>
+  </table>
+  <h3>3.2 拼装算法</h3>
+  <ul>
+    <li><b>归一化</b>：把基础物体缩放到高 0.98、底部落在 y=0，记录包围盒的宽、深与“身体半径”。</li>
+    <li><b>锚点</b>：顶置坐在 y=0.98 的杯口上；侧置贴到身体半径外侧；底置落在 y=0；环绕件按宽度包住身体。</li>
+    <li><b>错位</b>：同一锚点的多个器官沿高度错开，避免完全重叠；轮式底盘会把基础整体抬起，让轮子真正接地。</li>
+    <li><b>融合</b>：第二个基础缩到 0.62、偏移到侧后方，与主基础互相穿插，形成“长在一起”的嵌合体。</li>
+  </ul>
+  <h3>3.3 关键模块</h3>
+  <table>
+    <tr><th style="width:34%">模块</th><th>职责</th></tr>
+    <tr><td class="mono">src/engine/organs.ts</td><td>32 个器官的提示词、锚点、尺寸、功能影响、测试规则</td></tr>
+    <tr><td class="mono">src/lab/Assembled.tsx</td><td>加载基础与器官 GLB、归一化、锚点、错位、抬升、测试动画</td></tr>
+    <tr><td class="mono">src/lab/Lab.tsx</td><td>分类卡片、组合状态、自主变异、评分、分享</td></tr>
+    <tr><td class="mono">scripts/generate-organs.ts</td><td>分批并行提交 Lux3D 任务、串行轮询、写 manifest</td></tr>
+    <tr><td class="mono">server/lux3d.ts</td><td>任务创建、状态机、GLB 落盘、提示词哈希缓存</td></tr>
+  </table>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>04</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>04 器官库设计</span></div>
+  <h2>04　器官库设计</h2>
+  <p>32 个器官按安装位置分成四组。每个器官都有独立的 Lux3D 提示词、功能代价与至少一个功能标签；标签决定测试时它会触发哪一种失败。</p>
+  <table class="organ-table">
+    <tr><th style="width:14%">锚点</th><th style="width:9%">数量</th><th>器官</th><th style="width:20%">典型功能冲突</th></tr>
+    <tr><td>顶部</td><td class="num">8</td><td>密封盖、倒置伞面、太阳能板、天线、气球、降落伞、滤芯、灯罩</td><td>封住杯口 / 把水收走 / 把杯子拉走</td></tr>
+    <tr><td>侧面</td><td class="num">14</td><td>机械臂、巨柄、寄生装置、扬声器、摄像头、储液罐、仪表、锁扣、铰链、齿轮、管道、阀门、喷气口、藤壶</td><td>替你拿 / 锁住 / 把水引走 / 推走</td></tr>
+    <tr><td>底部</td><td class="num">6</td><td>轮式底盘、吸盘、钻头、机械腿、弹簧、菌丝</td><td>自己移动 / 固定 / 下钻 / 弹飞</td></tr>
+    <tr><td>环绕</td><td class="num">4</td><td>稳定环、防护笼、散热鳍、羽毛</td><td>扶正 / 关住 / 挡住 / 隔绝</td></tr>
+  </table>
+  <h3>4.1 功能代价不是随机数</h3>
+  <p>每个器官在 `OrganDef` 里写死三组值：可用性 utility、荒诞度 absurdity、辨识度 recognition。它们不是生成后猜的，而是设计时就确定的“结构代价”。例如：</p>
+  <table>
+    <tr><th>器官</th><th class="num">U</th><th class="num">A</th><th class="num">R</th><th>标签</th><th>为什么</th></tr>
+    <tr><td>密封盖</td><td class="num">-0.55</td><td class="num">+0.18</td><td class="num">-0.05</td><td><span class="tag">sealed</span></td><td>完全封住饮用口，但外观仍然像一只杯子</td></tr>
+    <tr><td>轮式底盘</td><td class="num">-0.30</td><td class="num">+0.40</td><td class="num">-0.22</td><td><span class="tag hot">autonomous</span></td><td>杯子会自己移动，你追不上</td></tr>
+    <tr><td>防护笼</td><td class="num">-0.40</td><td class="num">+0.25</td><td class="num">-0.28</td><td><span class="tag hot">caged</span></td><td>只能看，不能碰</td></tr>
+    <tr><td>气球</td><td class="num">-0.50</td><td class="num">+0.55</td><td class="num">-0.25</td><td><span class="tag">float</span></td><td>浮力把杯子拉离桌面</td></tr>
+    <tr><td>巨柄</td><td class="num">-0.12</td><td class="num">+0.16</td><td class="num">-0.05</td><td><span class="tag">handle</span></td><td>握得住，但重心偏到端不平</td></tr>
+  </table>
+  <figure><img src="figs/fig-organ-grid.png" alt="八个器官的单独渲染"><figcaption>图 3　部分器官的单独渲染：密封盖、倒置伞面、机械臂、轮式底盘、防护笼、巨柄、寄生装置、稳定环。每个都是独立生成的 GLB。</figcaption></figure>
+  <div class="note">4 个槽位 × 32 个器官，单基础就有 41,449 种组合（含空组合）；四个基础物体再乘 4。组合数不是为了堆料，而是为了让“同一只杯子可以走向完全不同的失败”。</div>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>05</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>05 评价与测试</span></div>
+  <h2>05　评价与无用性测试</h2>
+  <p>评价直接在界面上展开，不藏在一个总分后面。基础物体先有一个可用性起点，每装一个器官就按它的结构代价加减：</p>
+  <pre>U = clamp( U_base + Σ organ.utility − 0.12 × fusion )
+A = clamp( 0.08 + Σ organ.absurdity + 0.30 × fusion )
+R = clamp( 1.00 + Σ organ.recognition − 0.18 × fusion )
+Q = 0.4U + 0.3A + 0.2R + 0.1 × min(1, organs / 8)</pre>
+  <h3>5.1 一个可复核的例子</h3>
+  <p>水杯（U=0.90）装上密封盖（-0.55）、机械臂（-0.18）、轮式底盘（-0.30）、防护笼（-0.40）：U = 0.90 − 0.55 − 0.18 − 0.30 − 0.40 = −0.53，截断到 0.00；荒诞度 0.08+0.18+0.32+0.40+0.25 = 1.23，截断到 1.00；辨识度 1.00−0.05−0.18−0.22−0.28 = 0.27；Q = 0.40。界面右侧会逐项列出这四个数字，和模型上能看到的四个器官一一对应。</p>
+  <figure><img src="figs/fig-lab-test.png" alt="四器官组合的无用性测试"><figcaption>图 4　四器官组合与测试结论：防护笼触发“它被保护得太好了”，触发结构只列出防护笼，而不是把所有器官都算进去。</figcaption></figure>
+  <h3>5.2 测试规则：从标签到动作</h3>
+  <p>测试不是随机播一段动画，而是按当前组合的 flags 选规则，再对拼装好的 group 做对应的变换：</p>
+  <table>
+    <tr><th style="width:18%">标签</th><th style="width:34%">结论</th><th>动作</th></tr>
+    <tr><td><span class="tag hot">caged</span></td><td>它被保护得太好了</td><td>整体缓慢旋转，笼子始终包住杯体</td></tr>
+    <tr><td><span class="tag">sealed</span></td><td>它拒绝被打开</td><td>向倾倒方向倾斜到 0.85 rad，水仍不出</td></tr>
+    <tr><td><span class="tag">autonomous</span></td><td>它在你伸手之前先动了</td><td>整体沿 x 轴移出画面，同时转向</td></tr>
+    <tr><td><span class="tag">float</span></td><td>它开始向上，而不是向内</td><td>整体持续上升，离开展台</td></tr>
+    <tr><td><span class="tag">thrust</span></td><td>它选择了方向，你只能松手</td><td>沿 x 轴来回冲，带倾斜</td></tr>
+    <tr><td><span class="tag">burrow</span></td><td>它向下生长，桌面成了新的杯底</td><td>整体下沉，直到没入地面</td></tr>
+    <tr><td><span class="tag">bounce</span></td><td>它把倒水变成了投掷</td><td>整体按 |sin| 弹跳</td></tr>
+    <tr><td><span class="tag">spin</span></td><td>它空转，但把水甩了出去</td><td>绕 y 轴持续旋转</td></tr>
+    <tr><td><span class="tag">fold</span></td><td>它折起来，容量也折没了</td><td>绕 z 轴折到 0.7 rad</td></tr>
+  </table>
+  <p class="muted">其余标签（watch / noise / heat / foul / spread / store / power / signal / drag / measure / lock / valve / route / walk / insulate / filter / glow）走同一套“规则 + 动作”框架，动作以轻微摆动或固定为主；规则文案见 `TEST_RULES`。</p>
+  <div class="note">测试面板会额外显示“触发结构：防护笼”这样的行；当多个器官共享同一标签时，只列出真正拥有该标签的器官，避免把无关结构算进结论。</div>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>06</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>06 Lux3D 生产管线</span></div>
+  <h2>06　Lux3D 生产管线</h2>
+  <p>所有器官与基础物体都由 Aholo Lux3D 的 G1-Turbo 文生 3D 生成。提示词遵循同一套“隔离模块”模板：只描述器官本身、不描述杯子、不带背景物体，保证生成的网格可以被独立缩放和挂接。</p>
+  <pre>An isolated [organ] module, [material / structure], [mounting interface],
+no main object, no background objects,
+product design render, centered, photorealistic, high detail.</pre>
+  <h3>6.1 批量任务</h3>
+  <p>`scripts/generate-organs.ts` 先查 manifest，跳过已缓存；剩余器官按 4 个一批并行提交，任务完成后串行轮询并落盘，避免多个任务同时写 manifest。每个资产都记录 taskId、提示词哈希、文件大小与生成时间。</p>
+  <table>
+    <tr><th>器官</th><th>taskId</th><th class="num">原始体积</th><th class="num">压缩后</th><th>状态</th></tr>
+    <tr><td>密封盖</td><td class="mono">4788220</td><td class="num">—</td><td class="num">约 0.7 MB</td><td>已压缩</td></tr>
+    <tr><td>机械臂</td><td class="mono">4788267</td><td class="num">—</td><td class="num">约 0.6 MB</td><td>已压缩</td></tr>
+    <tr><td>轮式底盘</td><td class="mono">4788512</td><td class="num">—</td><td class="num">约 1.0 MB</td><td>已压缩</td></tr>
+    <tr><td>稳定环</td><td class="mono">4788559</td><td class="num">—</td><td class="num">约 1.0 MB</td><td>已压缩</td></tr>
+    <tr><td>倒置伞面</td><td class="mono">4788769</td><td class="num">—</td><td class="num">约 1.2 MB</td><td>已压缩</td></tr>
+    <tr><td>防护笼</td><td class="mono">4789643</td><td class="num">14.6 MB</td><td class="num">1.1 MB</td><td>已压缩</td></tr>
+    <tr><td>巨柄</td><td class="mono">4789049</td><td class="num">—</td><td class="num">约 1.8 MB</td><td>已压缩</td></tr>
+    <tr><td>寄生装置</td><td class="mono">4789094</td><td class="num">—</td><td class="num">约 1.1 MB</td><td>已压缩</td></tr>
+  </table>
+  <p class="muted">上表为 8 个首批器官；其余 24 个器官的 taskId、体积与压缩结果同样保存在 `public/models/manifest.json`，可按 `nodeId: organ:*` 复核。</p>
+  <h3>6.2 压缩与缓存</h3>
+  <ul>
+    <li>使用 `gltf-transform optimize`：WebP 纹理、1024 上限、meshopt 压缩，不做减面，保留轮廓。</li>
+    <li>提示词哈希作为文件名；同一提示词永远命中同一资产，不会重复生成。</li>
+    <li>结果 URL 只有 2 小时有效，任务成功后立即下载到 `public/models/`，避免过期。</li>
+  </ul>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>07</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>07 视觉与交互</span></div>
+  <h2>07　视觉与交互</h2>
+  <h3>7.1 让器官“长”在物体上</h3>
+  <p>器官不是简单叠在原点。拼装时先对基础做包围盒归一化，再根据锚点计算位置：顶置坐在杯口，侧置贴到身体半径，底置落地，环绕件按宽度包住；同一锚点的多个器官沿高度错开。轮式底盘会把基础整体抬起，让轮子真正接触地面，而不是陷进底盘。</p>
+  <h3>7.2 跨物种融合</h3>
+  <p>融合不是换贴图，而是把第二个基础物体缩到 0.62、偏移到侧后方，与主基础互相穿插。评价同时扣 0.12 可用性、加 0.30 荒诞度、扣 0.18 辨识度；测试会优先提示“它们长在了一起”。</p>
+  <figure><img src="figs/fig-lab-fusion.png" alt="水杯与椅子的融合"><figcaption>图 5　跨物种融合：水杯 × 椅子，两个祖先的结构互相占用。</figcaption></figure>
+  <h3>7.3 自主变异</h3>
+  <p>打开“自主变异”后，每 4.8 秒执行一次：有 32% 概率掉落一个器官，否则从未选器官里长出一个；结果写入变异记录，并在画面上方显示“自己长出了「气球」”这样的提示。玩家不点任何按钮，物体会自己变。</p>
+  <figure><img src="figs/fig-lab-auto.png" alt="自主变异提示"><figcaption>图 6　自主变异：物体自己长出一个器官，并留下一条可回看的记录。</figcaption></figure>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>08</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>08 工程与质量控制</span></div>
+  <h2>08　工程与质量控制</h2>
+  <table>
+    <tr><th style="width:30%">项目</th><th>结果</th></tr>
+    <tr><td>技术栈</td><td>Vite 5 + React 18 + TypeScript + @react-three/fiber + drei + three 0.169 + zustand + Express/tsx</td></tr>
+    <tr><td>构建</td><td>`tsc -b && vite build` 通过；JS 约 1.25 MB（gzip 369 KB），CSS 61 KB</td></tr>
+    <tr><td>资产</td><td>32 个器官 + 4 个基础；器官压缩后总计约 28 MB，全部资产约 44 MB</td></tr>
+    <tr><td>运行时模型调用</td><td>0 次；Lab 只调用 `/api/assets/lookup` 查询本地 URL</td></tr>
+    <tr><td>密钥</td><td>只存在于服务端 `.env`；前端 bundle、分享链接、报告、PPT、视频、zip 均不含密钥</td></tr>
+    <tr><td>分享</td><td>`#lab=` + base64 `{f,o,s,x}`；只含基础、器官、种子与融合，不含任何服务端信息</td></tr>
+    <tr><td>兼容</td><td>旧版三选一进化树保留在 `?tree=1`，旧分享 `#s=` 仍可用</td></tr>
+  </table>
+  <h3>8.1 质量检查</h3>
+  <ul>
+    <li>32 张器官卡片全部有独立资产；未就绪的卡片显示“未就绪”，点击会提示而不是静默失败。</li>
+    <li>四类锚点分别做包围盒检查：顶置不穿杯口、侧置贴身体、底置不悬空、环绕件包住主体。</li>
+    <li>组合切换、融合切换、自主变异、测试、分享链接解码均通过浏览器自动化回归。</li>
+    <li>同一组合的评分只依赖器官与基础，不依赖时间或随机数；分享链接可完整复现。</li>
+  </ul>
+  <h3>8.2 旧版作为拓展</h3>
+  <p>原来的“三选一进化树”没有被删除：它保留了规则生成、DAG 谱系、杂交与确定性校验，作为“拓展模式”放在 `?tree=1`。新主模式负责“自由组合与即时反馈”，旧模式负责“长路径与谱系叙事”，两者共用同一套 Lux3D 资产与 manifest。</p>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>09</span></div>
+</section>
+
+<section class="page">
+  <div class="runhead"><span>废物进化论 · 器官库</span><span>09 局限 · 10 提交</span></div>
+  <h2>09　局限与下一步</h2>
+  <h3>9.1 我们明确没做的</h3>
+  <ul>
+    <li><b>没有运行时生成</b>：这是刻意选择。所有器官赛前建好，换来的即时组合与稳定演示；代价是新器官必须重新跑管线。</li>
+    <li><b>没有物理仿真</b>：测试动作是规则驱动的变换，不是刚体/流体模拟；它解释“结构冲突”，不承诺真实物理。</li>
+    <li><b>器官挂接是启发式</b>：同一锚点的多个器官靠高度错开，极端组合仍可能互相穿插；我们优先保证可读性，而不是自动求解装配。</li>
+    <li><b>4 个槽位</b>：为了画面可读与评价可解释，单基础最多 4 个器官；不是技术上限。</li>
+  </ul>
+  <h3>9.2 下一步</h3>
+  <ul>
+    <li>把 32 个器官扩到 60+，增加“器官之间的相互反应”（例如锁扣 + 铰链触发新的失败规则）。</li>
+    <li>为器官增加可替换材质与颜色，让同一器官在不同基础上有不同的视觉身份。</li>
+    <li>把测试从变换升级为轻量物理：倾斜时的液体、轮子与地面的摩擦、气球的浮力。</li>
+    <li>开放“器官工坊”：玩家写一句描述，赛前管线生成新器官，再进入组合库。</li>
+  </ul>
+  <h2 style="margin-top:6mm">10　提交信息</h2>
+  <table>
+    <tr><th style="width:22%">项目</th><th>内容</th></tr>
+    <tr><td>Demo</td><td>【部署后填写，保留至 2026-12-31】</td></tr>
+    <tr><td>运行</td><td>Windows 双击 `启动Demo.bat`（构建 → 启动 8787 → 打开浏览器）；`停止Demo.bat` 释放端口。手动：`npm install` → `npm run dev`，或 `npm run build && npm start`</td></tr>
+    <tr><td>主入口</td><td>`/` 器官库；`/?tree=1` 旧版进化树；`/#lab=...` 分享组合</td></tr>
+    <tr><td>材料</td><td>本报告、路演 PPT、演示视频、提交文案、源代码 zip</td></tr>
+    <tr><td>团队</td><td>【姓名 / 分工】</td></tr>
+    <tr><td>声明</td><td>所有 3D 资产由 Aholo Lux3D G1-Turbo 生成；报告中的评分、组合数与测试结果均由当前代码实际运行得出。</td></tr>
+  </table>
+  <p class="muted" style="margin-top:4mm">参考：Aholo Lux3D API 文档（text-to-3D task create / get）；2026 Aholo 全球 3D AI 黑客松赛事要求。</p>
+  <div class="runfoot"><span>2026 Aholo 全球 3D AI 黑客松</span><span>10</span></div>
+</section>
+
+</body></html>

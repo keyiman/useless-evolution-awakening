@@ -1,0 +1,21 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1440
+PlayResY: 900
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Microsoft YaHei,34,&H00FFFFFF,&H00FFFFFF,&H00101010,&H80000000,0,0,0,0,100,100,0,0,1,2,1,2,60,60,300,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:03.20,0:00:08.00,Default,,0,0,0,,32 个 Lux3D 器官，自由叠加
+Dialogue: 0,0:00:08.00,0:00:13.00,Default,,0,0,0,,装上轮子，它开始自己走
+Dialogue: 0,0:00:13.00,0:00:20.00,Default,,0,0,0,,结构决定它怎么失败
+Dialogue: 0,0:00:20.00,0:00:25.50,Default,,0,0,0,,最多 4 个，4.1 万种组合
+Dialogue: 0,0:00:25.56,0:00:29.60,Default,,0,0,0,,跨物种融合：杯子长在椅子上
+Dialogue: 0,0:00:29.60,0:00:36.00,Default,,0,0,0,,不点按钮，它也会变
+Dialogue: 0,0:00:36.00,0:00:43.00,Default,,0,0,0,,每 4.8 秒，自己长出一个器官
+Dialogue: 0,0:00:43.08,0:00:47.60,Default,,0,0,0,,同一个组合，永远同样的结果

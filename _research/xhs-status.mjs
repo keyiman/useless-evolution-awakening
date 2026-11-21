@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages()[0];
+await p.goto('https://creator.xiaohongshu.com/new/note-manager',{waitUntil:'domcontentloaded'});
+await p.waitForTimeout(3500);
+const card=await p.evaluate(()=>{const el=Array.from(document.querySelectorAll('.note-card')).find(e=>e.textContent.includes('我让一只杯子')); return el?.innerText;});
+console.log('CARD:',card);
+const tabs=await p.evaluate(()=>Array.from(document.querySelectorAll('.d-tabs-headers *')).map(e=>e.innerText?.trim()).filter(Boolean));
+console.log('TABS',tabs);
+await p.screenshot({path:'_research/xhs-manager2.png'});
+await b.close();

@@ -3,4 +3,10 @@
 *.gltf binary
 *.png binary
 *.jpg binary
+*.jpeg binary
 *.mp4 binary
+*.webm binary
+*.zip binary
+*.pdf binary
+*.pptx binary
+*.exe binary

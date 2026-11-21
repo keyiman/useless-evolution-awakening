@@ -1,0 +1,13 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages()[0];
+const title=p.getByText('我让一只杯子，自己长出了腿',{exact:true}).first();
+console.log('count',await title.count());
+await title.click();
+await p.waitForTimeout(4000);
+console.log('URL',p.url());
+console.log((await p.locator('body').innerText()).slice(0,1200));
+const links=await p.evaluate(()=>Array.from(document.querySelectorAll('a')).map(a=>a.href).filter(h=>h.includes('xiaohongshu')).slice(0,20));
+console.log(links);
+await p.screenshot({path:'_research/xhs-detail.png'});
+await b.close();

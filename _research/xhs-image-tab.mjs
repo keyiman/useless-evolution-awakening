@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages()[0];
+await p.getByText('上传图文',{exact:true}).first().evaluate(el=>el.click());
+await p.waitForTimeout(1500);
+console.log('URL',p.url());
+console.log((await p.locator('body').innerText()).slice(0,1200));
+const inputs=await p.evaluate(()=>Array.from(document.querySelectorAll('input')).map((e,i)=>({i,type:e.type,accept:e.accept,cls:e.className?.toString().slice(0,60),ph:e.placeholder,rect:(()=>{const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height]})()})));
+console.log(JSON.stringify(inputs,null,1));
+await p.screenshot({path:'_research/xhs-image-tab.png'});
+await b.close();

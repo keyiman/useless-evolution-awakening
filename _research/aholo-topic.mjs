@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const p=b.contexts()[0].pages().at(-1);
+const el=p.getByText('我的选题',{exact:true}).first();
+console.log('count',await el.count());
+if(await el.count()) await el.click({force:true});
+await p.waitForTimeout(2500);
+console.log('URL',p.url());
+console.log((await p.locator('body').innerText()).slice(0,1400));
+await p.screenshot({path:'_research/aholo-topic.png'});
+await b.close();

@@ -1,0 +1,14 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
+await p.goto('http://127.0.0.1:5174/?r=qa-1280', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(7000);
+console.log('overflow', await p.evaluate(() => ({w: document.body.scrollWidth, h: document.body.scrollHeight, iw: innerWidth, ih: innerHeight})));
+console.log('tray', await p.locator('.lab-tray').evaluate(el => ({h: el.clientHeight, sh: el.scrollHeight})));
+console.log('cards', await p.locator('.organ-card').count(), 'pending', await p.locator('.organ-card.pending').count());
+await p.context().grantPermissions(['clipboard-read','clipboard-write']);
+await p.locator('button', { hasText: '分享' }).click();
+await p.waitForTimeout(700);
+const clip = await p.evaluate(() => navigator.clipboard.readText());
+console.log('share', clip.slice(0, 120));
+await b.close();

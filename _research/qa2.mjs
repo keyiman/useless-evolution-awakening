@@ -1,0 +1,16 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader','--enable-unsafe-swiftshader'] });
+const p = await b.newPage({ viewport: { width: 1680, height: 1050 } });
+const errs = []; p.on('pageerror', e => errs.push(e.message));
+await p.goto('http://localhost:5173/?demo=cup&gen=1', { waitUntil: 'domcontentloaded' });
+await p.waitForSelector('.hud-title', { timeout: 15000 });
+await p.waitForTimeout(7000);
+await p.screenshot({ path: '_research/demo-g1.png' });
+console.log('asset:', (await p.locator('.asset-text').innerText()).trim());
+console.log('title:', (await p.locator('.hud-title').innerText()).trim());
+await p.goto('http://localhost:5173/?demo=cup&gen=1&stage=1', { waitUntil: 'domcontentloaded' });
+await p.waitForSelector('canvas', { timeout: 15000 });
+await p.waitForTimeout(7000);
+await p.screenshot({ path: '_research/stage-g1.png' });
+console.log('errors:', errs.length ? errs : 'none');
+await b.close();

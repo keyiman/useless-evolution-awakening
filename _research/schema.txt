@@ -1,0 +1,150 @@
+﻿======================================== lux3d_TextTo3dRequest
+{
+ "required": [
+  "prompt"
+ ],
+ "type": "object",
+ "properties": {
+  "prompt": {
+   "minLength": 1,
+   "pattern": ".*\\S.*",
+   "type": "string",
+   "description": "文本提示词",
+   "example": "生成一个高质量的3D木椅模型"
+  },
+  "style": {
+   "type": "string",
+   "description": "生成风格，默认 photorealistic。",
+   "enum": [
+    "photorealistic",
+    "cartoon",
+    "anime",
+    "hand_painted",
+    "cyberpunk",
+    "fantasy",
+    "glass"
+   ],
+   "default": "photorealistic",
+   "example": "photorealistic"
+  },
+  "img": {
+   "type": "string",
+   "description": "可选的参考图片 URL。如需上传本地文件，请先调用 [Asset 文件上传接口](https://labs.aholo3d.cn/api-docs/api-reference#tag/asset)，再将返回的 URL 填入此字段。",
+   "example": "https://qhstaticssl.kujiale.com/image/jpeg/1784775590613/image_to_3d_model.jpg"
+  },
+  "version": {
+   "type": "string",
+   "description": "生成版本，支持 G1 和 G1-Turbo。省略时使用默认版本；建议显式传入。",
+   "enum": [
+    "G1",
+    "G1-Turbo"
+   ],
+   "example": "G1"
+  },
+  "faceCount": {
+   "type": "integer",
+   "description": "目标 Mesh 面数，取值范围为 10000-300000，默认 300000；PLY 输出不受此参数影响。",
+   "minimum": 10000,
+   "maximum": 300000,
+   "example": 300000
+  },
+  "outputFormat": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "enum": [
+     "zip",
+     "glb",
+     "ply"
+    ]
+   },
+   "description": "请求的输出格式。G1 固定返回 ZIP 和 GLB，请求包含 ply 时额外返回 PLY；G1-Turbo 返回指定格式，省略或传空数组时返回 ZIP。",
+   "example": [
+    "zip",
+    "glb"
+   ]
+  },
+  "enablePbr": {
+   "type": "boolean",
+   "description": "仅对 G1-Turbo 包含 Mesh 的请求生效：true 或省略时生成 PBR Mesh，false 生成白模；不决定输出格式。G1 及仅请求 PLY 时忽略。",
+   "default": true
+  },
+  "aiPredictSize": {
+   "type": "boolean",
+   "description": "省略或 true 会启用 AI 尺寸预测与缩放，false 关闭。"
+  }
+ },
+ "description": "文生 3D 请求体，支持 G1 和 G1-Turbo，可选提供一张 img 参考图。"
+}
+======================================== lux3d_TaskCreateResponse
+{
+ "type": "object",
+ "properties": {
+  "f": {
+   "type": "object",
+   "description": "失败信息；成功时为 null。",
+   "nullable": true,
+   "additionalProperties": true
+  },
+  "d": {
+   "type": "integer",
+   "description": "返回 taskid",
+   "format": "int64",
+   "example": 1256173,
+   "nullable": true
+  },
+  "m": {
+   "type": "string",
+   "description": "提示信息；成功时为空字符串 \"\"。",
+   "nullable": true
+  },
+  "c": {
+   "type": "string",
+   "description": "状态码；成功时为 \"0\"，普通参数错误时为 \"-1\"，部分业务错误使用专用错误码。",
+   "nullable": true
+  }
+ },
+ "description": "任务创建响应体。"
+}
+======================================== lux3d_TaskQueryResponse
+{
+ "type": "object",
+ "properties": {
+  "f": {
+   "type": "object",
+   "description": "失败信息；成功时为 null。",
+   "nullable": true,
+   "additionalProperties": true
+  },
+  "d": {
+   "$ref": "#/components/schemas/lux3d_TaskQueryData"
+  },
+  "m": {
+   "type": "string",
+   "description": "提示信息；成功时为空字符串 \"\"。",
+   "nullable": true
+  },
+  "c": {
+   "type": "string",
+   "description": "状态码；成功时为 \"0\"，普通参数错误时为 \"-1\"。",
+   "nullable": true
+  }
+ },
+ "description": "任务查询响应体。"
+}
+=== security schemes
+{
+ "AuthorizationHeader": {
+  "type": "apiKey",
+  "description": "开放平台访问凭证。API key 鉴权,在 Header 中增加 Authorization，值为平台申请的 API key，无需 Bearer 前缀。",
+  "name": "Authorization",
+  "in": "header"
+ },
+ "OusTokenV2": {
+  "type": "apiKey",
+  "description": "由「获取 OUS 上传凭证」返回的 `ousToken`；仅用于请求 `globalDomain` 上的 OUS 接口（与开放平台 `Authorization` 无关）。",
+  "name": "ous-token-v2",
+  "in": "header"
+ }
+}

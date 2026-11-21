@@ -1,0 +1,31 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const ctx = await b.newContext({ viewport: { width: 1600, height: 1000 }, permissions: ['clipboard-read','clipboard-write'] });
+const p = await ctx.newPage();
+const errs = [];
+p.on('pageerror', (e) => errs.push(e.message));
+p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
+await p.goto('http://127.0.0.1:5174/', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(5000);
+console.log('cards', await p.locator('.organ-card').count(), 'pending', await p.locator('.organ-card.pending').count(), 'on', await p.locator('.organ-card.on').count());
+for (const name of ['轮式底盘','稳定环','倒置伞面','防护笼','巨柄','寄生装置']) {
+  const card = p.locator('.organ-card', { hasText: name });
+  await card.click(); await p.waitForTimeout(400);
+  await card.click(); await p.waitForTimeout(300);
+}
+console.log('after toggles on', await p.locator('.organ-card.on').count());
+await p.locator('button', { hasText: '运行无用性测试' }).click();
+await p.waitForTimeout(1500);
+console.log('test', (await p.locator('.lab-test').innerText()).split('\n')[0]);
+await p.locator('button', { hasText: '返回观察' }).click();
+await p.locator('.fusion-chip', { hasText: '椅子' }).click();
+await p.waitForTimeout(1200);
+console.log('fusion tag', await p.locator('.lab-fusion-tag').innerText());
+await p.locator('button', { hasText: '分享' }).click();
+await p.waitForTimeout(600);
+console.log('clipboard', (await p.evaluate(() => navigator.clipboard.readText())).slice(0, 60));
+await p.locator('button', { hasText: '让它自己变异' }).click();
+await p.waitForTimeout(6000);
+console.log('auto note', await p.locator('.lab-note').innerText().catch(()=>'(none)'));
+console.log('errors', errs.slice(0,5));
+await b.close();

@@ -1,0 +1,15 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1600, height: 1000 } });
+const errs = [];
+p.on('pageerror', (e) => errs.push(e.message));
+await p.goto('http://127.0.0.1:5174/', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(5000);
+// 先清掉默认密封盖，再选轮子和稳定环
+await p.locator('.organ-card', { hasText: '密封盖' }).click();
+await p.locator('.organ-card', { hasText: '轮式底盘' }).click();
+await p.locator('.organ-card', { hasText: '稳定环' }).click();
+await p.waitForTimeout(10000);
+await p.screenshot({ path: '_research/lab-05.png' });
+console.log('on:', await p.locator('.organ-card.on').count(), 'errors:', errs.slice(0,3));
+await b.close();

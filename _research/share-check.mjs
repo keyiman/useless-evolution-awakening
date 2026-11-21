@@ -1,0 +1,11 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1400, height: 900 } });
+const code = Buffer.from(JSON.stringify({f:'cup',o:['seal','arm'],s:'LAB-777',x:'chair'})).toString('base64').replace(/=+$/,'');
+await p.goto(`http://127.0.0.1:5174/#lab=${code}`, { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(6000);
+console.log('on', await p.locator('.organ-card.on').count());
+console.log('fusion', await p.locator('.fusion-chip.on').innerText());
+console.log('seed', await p.locator('.lab-seed').innerText());
+console.log('tag', await p.locator('.lab-fusion-tag').innerText());
+await b.close();

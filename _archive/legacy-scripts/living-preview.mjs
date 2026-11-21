@@ -1,0 +1,5 @@
+import {chromium} from 'playwright-core';
+import fs from 'node:fs';
+const b=await chromium.launch({executablePath:'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',headless:true,args:['--force-device-scale-factor=1','--use-angle=d3d11','--enable-unsafe-swiftshader']});
+const p=await b.newPage({viewport:{width:1440,height:960},deviceScaleFactor:1});p.on('pageerror',e=>console.log('ERROR',e.message));fs.mkdirSync('_research/living',{recursive:true});
+try{await p.goto('http://localhost:8787/');await p.waitForSelector('canvas');await p.waitForTimeout(2000);await p.screenshot({path:'_research/living/stage-0.png'});for(let i=1;i<=4;i++){await p.locator('.life-timeline button').nth(i).click();await p.waitForFunction(()=>document.querySelector('.life-gallery').dataset.mode==='demo',{},{timeout:30000});await p.waitForTimeout(900);await p.screenshot({path:`_research/living/stage-${i}.png`});console.log('stage',i,'demo');}await p.setViewportSize({width:390,height:844});await p.waitForTimeout(600);await p.screenshot({path:'_research/living/mobile.png',fullPage:true});}finally{await b.close();}

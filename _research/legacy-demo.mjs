@@ -1,0 +1,10 @@
+﻿import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-gpu-sandbox'] });
+const p = await b.newPage({ viewport: { width: 1400, height: 900 } });
+const errs = [];
+p.on('pageerror', (e) => errs.push(e.message));
+await p.goto('http://127.0.0.1:5174/?demo=cup&gen=5&spin=0', { waitUntil: 'domcontentloaded' });
+await p.waitForTimeout(8000);
+console.log('canvas', await p.locator('canvas').count(), 'title', await p.locator('.stage-title, .node-title, h2').first().innerText().catch(()=>''));
+console.log('errors', errs.slice(0,3));
+await b.close();

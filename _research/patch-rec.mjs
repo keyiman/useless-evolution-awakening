@@ -1,0 +1,17 @@
+﻿import fs from 'node:fs';
+let s = fs.readFileSync('scripts/record-demo.mjs','utf8');
+s = s.replace('await wait(6500);\nawait cap(', 'await wait(3000);\nawait cap(');
+s = s.replace('await wait(4000);', 'await wait(2500);');
+s = s.replace('await wait(1500);\nawait page.locator(\'.candidate\').nth(1).hover();', 'await wait(800);\nawait page.locator(\'.candidate\').nth(1).hover();');
+s = s.replace('await wait(1500);\nawait page.locator(\'.candidate\').nth(2).hover();', 'await wait(800);\nawait page.locator(\'.candidate\').nth(2).hover();');
+s = s.replace('await wait(1500);\n\nawait cap(\'被选中', 'await wait(800);\n\nawait cap(\'被选中');
+s = s.replace('await wait(6000);', 'await wait(3500);');
+s = s.replace('await wait(5500);', 'await wait(3500);');
+s = s.replace('await wait(6500);\n\nawait cap(\'五代之后', 'await wait(3500);\n\nawait cap(\'五代之后');
+s = s.replace('await wait(2000);\nconst box', 'await wait(1000);\nconst box');
+s = s.replace('await wait(5000);\n\nawait cap(\'无用性测试', 'await wait(2500);\n\nawait cap(\'无用性测试');
+s = s.replace('await wait(7000);', 'await wait(4500);');
+s = s.replace('await wait(1200);', 'await wait(600);');
+s = s.replace('await wait(4500);', 'await wait(2500);');
+fs.writeFileSync('scripts/record-demo.mjs', s);
+console.log('ok');

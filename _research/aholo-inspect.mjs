@@ -1,0 +1,10 @@
+﻿import { chromium } from 'playwright-core';
+const b=await chromium.connectOverCDP('http://127.0.0.1:9222');
+const ctx=b.contexts()[0];
+const p=await ctx.newPage();
+await p.goto('https://www.aholo.cn/hackathon/my',{waitUntil:'domcontentloaded'});
+await p.waitForTimeout(5000);
+console.log('URL',p.url());
+console.log((await p.locator('body').innerText()).slice(0,3000));
+await p.screenshot({path:'_research/aholo-my.png',fullPage:false});
+await b.close();
